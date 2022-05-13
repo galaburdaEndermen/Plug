@@ -344,7 +344,7 @@ define(function (require) {
         document.getElementsByTagName('head')[0].appendChild(style);
 
         const observer = new MutationObserver(callback);
-        debugger;
+
         const session = JSON.parse(window.localStorage.getItem("SPA_auth_session"));
         const access_token = window.localStorage.getItem("access_token");
 
@@ -358,9 +358,9 @@ define(function (require) {
             if (groupUsers.map(x => x.UserId).includes(session.sessionUserId)) {
                 userGroupName = group.GroupName;
                 const groupPermissions = JSON.parse(getPermissions(userGroupName, session.token));
+                console.log(userGroupName);
                 console.log(groupPermissions);
                 permissions = [...permissions, ...groupPermissions]
-                // permissions.push(groupPermissions);
             }
         }
         console.log(permissions);
@@ -372,7 +372,6 @@ define(function (require) {
     });
 
     function getGroups(token, session) {
-        debugger;
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", `${session.server}/api/permissions/getGroups`, false);
         xmlHttp.setRequestHeader('Authorization', `Bearer ${token}`);
@@ -381,8 +380,6 @@ define(function (require) {
     }
 
     function getGroupUsers(groupId, token, session) {
-        debugger;
-
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", `${session.server}/api/permissions/getGroupUsers?groupId=${groupId}`, false);
         xmlHttp.setRequestHeader('Authorization', `Bearer ${token}`);
@@ -391,8 +388,6 @@ define(function (require) {
     }
 
     function getPermissions(groupName, token) {
-        debugger;
-
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", "https://linnworks-apps.brainence.info/api/getGroupConfiguration?groupName=" + groupName, false);
         xmlHttp.setRequestHeader('Authorization', token);
