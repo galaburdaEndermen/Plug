@@ -359,7 +359,8 @@ define(function (require) {
                 userGroupName = group.GroupName;
                 const groupPermissions = JSON.parse(getPermissions(userGroupName, session.token));
                 console.log(groupPermissions);
-                permissions.push(groupPermissions);
+                permissions = [...permissions, ...groupPermissions]
+                // permissions.push(groupPermissions);
             }
         }
         console.log(permissions);
