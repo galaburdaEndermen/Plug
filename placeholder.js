@@ -84,7 +84,7 @@ define(function (require) {
                 }
             }
 
-            if (!permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
+            if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
 
             }
