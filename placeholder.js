@@ -194,8 +194,8 @@ define(function (require) {
                                 // select.value = "Default";
                                 const options = Array.from(select.options);
                                 let sas = "lel";
-                                // const optionToSelect = options.find(item => item.text === text);
-                                // optionToSelect.selected = true;
+                                const optionToSelect = options.find(item => item.label === "Default");
+                                optionToSelect.selected = true;
                             }
                             //checking if there is anything selected in category select
                             if (select.getAttribute("lw-tst") === "select_reasonCategory") {
