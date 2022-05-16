@@ -15,7 +15,7 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
 
-            if (permissions.some(x => x.fieldName === 'input_additionalCost')) {
+            if (!permissions.some(x => x.fieldName === 'input_additionalCost')) {
                 var resendForm = document.getElementsByName("submissionForm.Resend")[0];
                 if (resendForm) {
                     var inputs = resendForm.getElementsByTagName("input");
@@ -30,7 +30,7 @@ define(function (require) {
                 }
             }
 
-            if (permissions.some(x => x.fieldName === 'advancedPermissions')) {
+            if (!permissions.some(x => x.fieldName === 'advancedPermissions')) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
@@ -48,7 +48,7 @@ define(function (require) {
                 }
             }
 
-            if (permissions.some(x => x.fieldName === 'cs_app')) {
+            if (!permissions.some(x => x.fieldName === 'cs_app')) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
@@ -66,7 +66,7 @@ define(function (require) {
                 }
             }
 
-            if (permissions.some(x => x.fieldName === 'rma_app')) {
+            if (!permissions.some(x => x.fieldName === 'rma_app')) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
