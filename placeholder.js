@@ -88,6 +88,7 @@ define(function (require) {
                 var Settings = document.getElementById("Settings");
                 if (Settings) {
                     Settings.innerHTML = "";
+                    Settings.parentNode.removeChild(Settings);
                 }
             }
 
