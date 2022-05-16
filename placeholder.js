@@ -15,7 +15,7 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
 
-            if (!permissions.some(x => x.fieldName === 'input_additionalCost')) {
+            if (!permissions.some(x => x.fieldName === 'input_additionalCost') && !admin) {
                 var resendForm = document.getElementsByName("submissionForm.Resend")[0];
                 if (resendForm) {
                     var inputs = resendForm.getElementsByTagName("input");
@@ -30,7 +30,7 @@ define(function (require) {
                 }
             }
 
-            if (!permissions.some(x => x.fieldName === 'advancedPermissions')) {
+            if (!permissions.some(x => x.fieldName === 'advancedPermissions') && !admin) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
@@ -48,7 +48,7 @@ define(function (require) {
                 }
             }
 
-            if (!permissions.some(x => x.fieldName === 'cs_app')) {
+            if (!permissions.some(x => x.fieldName === 'cs_app') && !admin) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
@@ -66,7 +66,7 @@ define(function (require) {
                 }
             }
 
-            if (!permissions.some(x => x.fieldName === 'rma_app')) {
+            if (!permissions.some(x => x.fieldName === 'rma_app') && !admin) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
@@ -92,7 +92,7 @@ define(function (require) {
                 }
             }
 
-            if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
+            if (permissions.some(x => x.fieldName === 'custom_refund_bundle') && !admin) {
 
                 if (mutationsList[0].target.id === "custom-invalidity-text") {
                     return;
