@@ -84,13 +84,13 @@ define(function (require) {
                 }
             }
 
-            if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
-                var Settings = document.getElementById("Settings");
-                if (Settings) {
-                    Settings.innerHTML = "";
-                    Settings.parentNode.removeChild(Settings);
-                }
-            }
+            // if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
+            //     var Settings = document.getElementById("Settings");
+            //     if (Settings) {
+            //         Settings.innerHTML = "";
+            //         Settings.parentNode.removeChild(Settings);
+            //     }
+            // }
 
             if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
 
