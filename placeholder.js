@@ -85,7 +85,8 @@ define(function (require) {
             }
 
             if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
-                var Settings = document.getElementsById("Settings");
+                var Settings = document.getElementById("Settings");
+                let kek = document.getElementsByClassName("mat-tooltip-trigger ng-star-inserted");
             }
 
             if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
