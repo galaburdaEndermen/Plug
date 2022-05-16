@@ -86,7 +86,6 @@ define(function (require) {
 
             if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
                 var Settings = document.getElementsById("Settings")[0];
-
             }
 
             if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
