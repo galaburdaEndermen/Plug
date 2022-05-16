@@ -84,13 +84,13 @@ define(function (require) {
                 }
             }
 
-            // if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
-            //     var Settings = document.getElementById("Settings");
-            //     if (Settings) {
-            //         Settings.innerHTML = "";
-            //         Settings.parentNode.removeChild(Settings);
-            //     }
-            // }
+            if (!permissions.some(x => x.fieldName === 'linnworks_settings_button') && !admin) {
+                var Settings = document.getElementById("Settings");
+                if (Settings) {
+                    Settings.innerHTML = "";
+                    Settings.parentNode.removeChild(Settings);
+                }
+            }
 
             if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
 
@@ -357,6 +357,7 @@ define(function (require) {
         const observer = new MutationObserver(callback);
 
         const session = JSON.parse(window.localStorage.getItem("SPA_auth_session"));
+        const admin = session.superAdmin;
         const access_token = window.localStorage.getItem("access_token");
 
         const groups = JSON.parse(getGroups(access_token, session));
