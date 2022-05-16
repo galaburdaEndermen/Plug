@@ -85,7 +85,7 @@ define(function (require) {
             }
 
             if (!permissions.some(x => x.fieldName === 'linnworks_settings_button')) {
-                var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
+                var Settings = document.getElementsById("Settings")[0];
 
             }
 
