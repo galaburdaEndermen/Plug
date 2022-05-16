@@ -190,11 +190,9 @@ define(function (require) {
                         for (var select of selects) {
                             //making return location select readonly
                             if (select.getAttribute("lw-tst") === "select_RMAOrderLocation") {
-                                select.disabled = true;
-                                // select.value = "Default";
+                                // select.disabled = true;
                                 const options = Array.from(select.options);
-                                let sas = "lel";
-                                const optionToSelect = options.find(item => item.label === "Default");
+                                const optionToSelect = options.find(item => item.label === "CC");
                                 optionToSelect.selected = true;
                             }
                             //checking if there is anything selected in category select
