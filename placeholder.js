@@ -84,6 +84,11 @@ define(function (require) {
                 }
             }
 
+            if (!permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
+                var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
+
+            }
+
             if (permissions.some(x => x.fieldName === 'custom_refund_bundle')) {
 
                 if (mutationsList[0].target.id === "custom-invalidity-text") {
@@ -190,10 +195,10 @@ define(function (require) {
                         for (var select of selects) {
                             //making return location select readonly
                             if (select.getAttribute("lw-tst") === "select_RMAOrderLocation") {
-                                // select.disabled = true;
                                 const options = Array.from(select.options);
-                                const optionToSelect = options.find(item => item.label === "CC");
+                                const optionToSelect = options.find(item => item.label === "Default");
                                 optionToSelect.selected = true;
+                                select.disabled = true;
                             }
                             //checking if there is anything selected in category select
                             if (select.getAttribute("lw-tst") === "select_reasonCategory") {
