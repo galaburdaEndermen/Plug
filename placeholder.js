@@ -149,6 +149,7 @@ define(function (require) {
                                     refundSum = parseFloat(input.value);
                                     isRefundSumSet = true;
                                 }
+                                input.value = 0;
                                 input.setAttribute('readonly', true);
                             }
 
@@ -216,7 +217,7 @@ define(function (require) {
                     if (inputs) {
                         for (var input of inputs) {
                             if (input.getAttribute("lw-tst") === "input_Refund") {
-                                input.value = refundSum;
+                                input.value = 0;
                                 input.setAttribute('readonly', true);
                             }
 
