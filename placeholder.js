@@ -92,7 +92,7 @@ define(function (require) {
                 }
             }
 
-            if (permissions.some(x => x.fieldName === 'custom_refund_bundle') && !admin) {
+            if (true) {
 
                 if (mutationsList[0].target.id === "custom-invalidity-text") {
                     return;
