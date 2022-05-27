@@ -92,7 +92,7 @@ define(function (require) {
                 }
             }
 
-            if (true) {
+            if (permissions.some(x => x.fieldName === 'custom_refund_bundle') && !admin) {
 
                 if (mutationsList[0].target.id === "custom-invalidity-text") {
                     return;
@@ -149,7 +149,6 @@ define(function (require) {
                                     refundSum = parseFloat(input.value);
                                     isRefundSumSet = true;
                                 }
-                                input.value = 0;
                                 input.setAttribute('readonly', true);
                             }
 
