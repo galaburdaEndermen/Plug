@@ -26,7 +26,7 @@ define(function (require) {
                             var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
                             var kek = new Date(Date.parse(element.innerHTML));
                             var lal = kek.toLocaleDateString("en-US");
-                            element.innerHTML = lal;
+                            // element.innerHTML = lal;
                         } catch (error) {
 
                         }
