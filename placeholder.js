@@ -65,6 +65,23 @@ define(function (require) {
                     }
                 }
             }
+            if (!permissions.some(x => x.fieldName === 'notes_sync') && !admin) {
+                var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
+                if (appsContainer) {
+                    var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
+                    if (moduleContainers.length > 0) {
+                        for (var moduleContainer of moduleContainers) {
+                            var nameModule = moduleContainer.getElementsByClassName("module-name-text")[0];
+                            if (nameModule) {
+                                if (nameModule.getAttribute("title").includes("Notes Sync")) {
+                                    moduleContainer.innerHTML = "";
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             if (!permissions.some(x => x.fieldName === 'rma_app') && !admin) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
