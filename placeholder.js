@@ -15,27 +15,27 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
 
-            var regex = /[0-9]+[-][0-9][0-9][-][0-9][0-9][A-Z][0-9][0-9][:][0-9][0-9][:][0-9][0-9][.][0-9]+[A-Z]/;
-            var dialog = document.getElementsByClassName("ag-tabs ag-menu ag-focus-managed ag-ltr ag-popup-child")[0];
-            // var ebody1 = dialog.getElementsByTagName("div").find(e => e.getAttribute("ref") === "eBody");
-            let test = dialog.getElementsByTagName("div");
-            for (var e of test) {
-                if (e.getAttribute("ref") === "eBody") {
-                    var list = e.getElementsByClassName("ag-set-filter-item");
-                    for (var i of list) {
-                        try {
-                            var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
-                            if (element.innerHTML.match(regex)) {
-                                var kek = new Date(Date.parse(element.innerHTML));
-                                var lal = kek.toLocaleDateString("en-US");
-                                element.innerHTML = lal;
-                            }
-                        } catch (error) {
+            // var regex = /[0-9]+[-][0-9][0-9][-][0-9][0-9][A-Z][0-9][0-9][:][0-9][0-9][:][0-9][0-9][.][0-9]+[A-Z]/;
+            // var dialog = document.getElementsByClassName("ag-tabs ag-menu ag-focus-managed ag-ltr ag-popup-child")[0];
+            // // var ebody1 = dialog.getElementsByTagName("div").find(e => e.getAttribute("ref") === "eBody");
+            // let test = dialog.getElementsByTagName("div");
+            // for (var e of test) {
+            //     if (e.getAttribute("ref") === "eBody") {
+            //         var list = e.getElementsByClassName("ag-set-filter-item");
+            //         for (var i of list) {
+            //             try {
+            //                 var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
+            //                 if (element.innerHTML.match(regex)) {
+            //                     var kek = new Date(Date.parse(element.innerHTML));
+            //                     var lal = kek.toLocaleDateString("en-US");
+            //                     element.innerHTML = lal;
+            //                 }
+            //             } catch (error) {
 
-                        }
-                    }
-                }
-            }
+            //             }
+            //         }
+            //     }
+            // }
 
             if (!permissions.some(x => x.fieldName === 'input_additionalCost') && !admin) {
                 var resendForm = document.getElementsByName("submissionForm.Resend")[0];
