@@ -21,9 +21,11 @@ define(function (require) {
             for (var e of test) {
                 if (e.getAttribute("ref") === "eBody") {
                     var list = e.getElementsByClassName("ag-set-filter-item");
-                    var list2 = list.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label");
-                    for (var i of list2) {
-                        let testhtml = i.innerHTML;
+                    for (var i of list) {
+                        var list2 = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label");
+                        for (var i2 of list2) {
+                            let testhtml = i2.innerHTML;
+                        }
                     }
                 }
             }
