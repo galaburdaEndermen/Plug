@@ -24,8 +24,8 @@ define(function (require) {
                     var list = e.getElementsByClassName("ag-set-filter-item");
                     for (var i of list) {
                         try {
+                            var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
                             if (element.innerHTML.match(regex)) {
-                                var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
                                 var kek = new Date(Date.parse(element.innerHTML));
                                 var lal = kek.toLocaleDateString("en-US");
                                 element.innerHTML = lal;
