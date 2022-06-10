@@ -15,6 +15,19 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
 
+            var dialog = document.getElementsByClassName("ag-tabs ag-menu ag-focus-managed ag-ltr ag-popup-child")[0];
+            // var ebody1 = dialog.getElementsByTagName("div").find(e => e.getAttribute("ref") === "eBody");
+            let test = dialog.getElementsByTagName("div");
+            for (var e of test) {
+                if (e.getAttribute("ref") === "eBody") {
+                    var list = e.getElementsByClassName("ag-set-filter-item");
+                    var list2 = list.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label");
+                    for (var i of list2) {
+                        let testhtml = i.innerHTML;
+                    }
+                }
+            }
+
             if (!permissions.some(x => x.fieldName === 'input_additionalCost') && !admin) {
                 var resendForm = document.getElementsByName("submissionForm.Resend")[0];
                 if (resendForm) {
