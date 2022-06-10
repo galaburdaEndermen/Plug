@@ -22,9 +22,13 @@ define(function (require) {
                 if (e.getAttribute("ref") === "eBody") {
                     var list = e.getElementsByClassName("ag-set-filter-item");
                     for (var i of list) {
-                        var list2 = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label");
-                        for (var i2 of list2) {
-                            let testhtml = i2.innerHTML;
+                        try {
+                            var element = i.getElementsByClassName("ag-input-field-label ag-label ag-checkbox-label")[0];
+                            var kek = Date.parse(element.innerHTML);
+                            var lal = kek.toLocaleDateString("en-US");
+                            element.innerHTML = lal;
+                        } catch (error) {
+
                         }
                     }
                 }
