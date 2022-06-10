@@ -65,7 +65,7 @@ define(function (require) {
                     }
                 }
             }
-            if (!permissions.some(x => x.fieldName === 'notes_sync')) {
+            if (!permissions.some(x => x.fieldName === 'notes_sync') && !admin) {
                 var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
                 if (appsContainer) {
                     var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
