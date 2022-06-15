@@ -2,7 +2,7 @@
 
 define(function (require) {
     $(document).ready(function ($scope) {
-
+        const config = { childList: true, subtree: true };
         const ngServiceDecorator = require("core/ngService");
 
         var callback = function (mutationsList, observer) {
