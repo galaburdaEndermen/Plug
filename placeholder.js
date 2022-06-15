@@ -19,7 +19,7 @@ define(function (require) {
             let divs = document.getElementsByTagName("div");
 
             for (var form of divs) {
-                if (form.className.includes("ProcessedOrders_ReturnsView")) {
+                if (form.className.includes("ProcessedOrders_RefundsView")) {
                     let inputs = form.getElementsByTagName("input");
                     let customer = '';
                     let source = '';
