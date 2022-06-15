@@ -15,19 +15,26 @@ define(function (require) {
 
 
 
-            let form = document.getElementsByClassName("ProcessedOrders_ReturnsView")?.[0];
-            if (form) {
-                let plus = form.getElementsByClassName("fa fa-plus-square-o fa-lg  slick-icon-row-toggle")?.[0];
-                if (plus) {
-                    plus.click();
+            // let divs = document.getElementsByClassName("dialog ProcessedOrders_ReturnsView")?.[0];
+            let divs = document.getElementsByTagName("div");
 
-                    var cell = document.getElementsByClassName("slick-cell l5 r5")?.[0];
-                    if (cell) {
-                        var inner = cell.getElementsByTagName("span")?.[0];
-                        let reference = inner.innerHTML;
+            for (var form of divs) {
+                if (form.className.includes("ProcessedOrders_ReturnsView")) {
+                    let plus = form.getElementsByClassName("fa fa-plus-square-o fa-lg  slick-icon-row-toggle")?.[0];
+                    if (plus) {
+                        plus.click();
+
+                        var cell = document.getElementsByClassName("slick-cell l5 r5")?.[0];
+                        if (cell) {
+                            var inner = cell.getElementsByTagName("span")?.[0];
+                            let reference = inner.innerHTML;
+                        }
                     }
                 }
             }
+            // if (form) {
+
+            // }
 
             // let script = "select fkOrderId as Id from [Order_Refund] where [RefundReference] = '07D668DEE509CB'";
             // let parameters = [];
