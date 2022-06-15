@@ -15,7 +15,7 @@ define(function (require) {
 
 
 
-            let form = document.getElementsByClassName("dialog ProcessedOrdersModule ProcessedOrders_RefundsView")?.[0];
+            let form = document.getElementsByClassName("ProcessedOrders_ReturnsView")?.[0];
             if (form) {
                 let plus = form.getElementsByClassName("fa fa-plus-square-o fa-lg  slick-icon-row-toggle")?.[0];
                 if (plus) {
