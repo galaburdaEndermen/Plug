@@ -15,30 +15,43 @@ define(function (require) {
 
 
 
-            // // let divs = document.getElementsByClassName("dialog ProcessedOrders_ReturnsView")?.[0];
-            // let divs = document.getElementsByTagName("div");
+            // let divs = document.getElementsByClassName("dialog ProcessedOrders_ReturnsView")?.[0];
+            let divs = document.getElementsByTagName("div");
 
-            // for (var form of divs) {
-            //     if (form.className.includes("ProcessedOrders_ReturnsView")) {
-            //         let plus = form.getElementsByClassName("fa fa-plus-square-o fa-lg  slick-icon-row-toggle")?.[0];
-            //         if (plus) {
-            //             plus.click();
+            for (var form of divs) {
+                if (form.className.includes("ProcessedOrders_ReturnsView")) {
+                    let inputs = form.getElementsByTagName("input");
+                    let customer = '';
+                    let source = '';
+                    let orderDate = '';
+                    let orderTotal = '';
+                    let subSource = '';
+                    let processedDate = '';
+                    for (var input of inputs) {
+                        if (input.getAttribute("lw-tst") === "label_Customer") {
+                            customer = input.value;
+                        }
+                        if (input.getAttribute("lw-tst") === "label_Source") {
+                            source = input.value;
+                        }
+                        if (input.getAttribute("lw-tst") === "label_OrderDate") {
+                            orderDate = input.value;
+                        }
+                        if (input.getAttribute("lw-tst") === "label_OrderTotal") {
+                            orderTotal = input.value;
+                        }
+                        if (input.getAttribute("lw-tst") === "label_Subsource") {
+                            subSource = input.value;
+                        }
+                        if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
+                            processedDate = input.value;
+                        }
+                    }
+                    let sas123 = 'sas';
+                }
+            }
 
-            //             var cell = document.getElementsByClassName("slick-cell l5 r5")?.[0];
-            //             if (cell) {
-            //                 var inner = cell.getElementsByTagName("span")?.[0];
-            //                 let reference = inner.innerHTML;
-            //             }
-            //         }
-            //     }
-            // }
-
-
-            // if (form) {
-
-            // }
-
-            // new Date(year, month, day);
+            // if (tab.getAttribute("lw-tst") === "tab_Resend") 
 
             let script = `
             select  
@@ -61,10 +74,10 @@ define(function (require) {
                 }
                 else {
                     console.log(event.result.Results);
-                    console.log(new Date('07 Jun 2022 10:21'));
                     console.log(new Date('07 Jun 2022 10:21').toISOString());
-                    console.log(Date.parse('07 Jun 2022 10:21'));
-                    console.log(Date.parse('07 Jun 2022 10:21').toISOString());
+                    // console.log(new Date('07 Jun 2022 10:21'));
+                    // console.log(Date.parse('07 Jun 2022 10:21'));
+                    // console.log(Date.parse('07 Jun 2022 10:21').toISOString());
                 }
             });
 
