@@ -14,5 +14,12 @@ define(function (require) {
 
 
         }
+
+        const observer = new MutationObserver(callback);
+
+        setTimeout(function () {
+            const targetNode = document.getElementsByTagName("body")[0];
+            observer.observe(targetNode, config);
+        }, 2000);
     })
 });
