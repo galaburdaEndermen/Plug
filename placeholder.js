@@ -12,17 +12,33 @@ define(function (require) {
 
             let t3 = Services;
 
-            let script = "select top 100 * from [Order]";
-            let parameters = [];
 
-            Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
-                if (event.result.IsError) {
-                    let lal = event.result;
+
+
+            let form = document.getElementsByClassName("dialog ProcessedOrdersModule ProcessedOrders_RefundsView")?.[0];
+            if (form) {
+                let plus = form.getElementsByClassName("fa fa-plus-square-o fa-lg  slick-icon-row-toggle")?.[0];
+                if (plus) {
+                    plus.click();
+
+                    var cell = document.getElementsByClassName("slick-cell l5 r5")?.[0];
+                    if (cell) {
+                        var inner = cell.getElementsByTagName("span")?.[0];
+                        let reference = inner.innerHTML;
+                    }
                 }
-                else {
-                    let kek = event.result.Results;
-                }
-            });
+            }
+
+            // let script = "select fkOrderId as Id from [Order_Refund] where [RefundReference] = '07D668DEE509CB'";
+            // let parameters = [];
+            // Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
+            //     if (event.result.IsError) {
+            //         let lal = event.result;
+            //     }
+            //     else {
+            //         let kek = event.result.Results;
+            //     }
+            // });
 
 
         }
