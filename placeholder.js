@@ -61,6 +61,7 @@ define(function (require) {
                 }
                 else {
                     let kek = event.result.Results;
+                    console.log(kek);
                 }
             });
 
