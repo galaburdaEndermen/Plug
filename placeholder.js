@@ -60,8 +60,11 @@ define(function (require) {
                     let lal = event.result;
                 }
                 else {
-                    let kek = event.result.Results;
-                    console.log(kek);
+                    console.log(event.result.Results);
+                    console.log(new Date('07 Jun 2022 10:21'));
+                    console.log(new Date('07 Jun 2022 10:21').toISOString());
+                    console.log(Date.parse('07 Jun 2022 10:21'));
+                    console.log(Date.parse('07 Jun 2022 10:21').toISOString());
                 }
             });
 
