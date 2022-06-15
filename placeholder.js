@@ -12,14 +12,44 @@ define(function (require) {
 
             let t3 = Services;
 
+            let script = "select top 100 * from [Order]";
+            let parameters = [];
+
+            Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
+                if (event.result.IsError) {
+                    let lal = event.result;
+                }
+                else {
+                    let kek = event.result.Results;
+                }
+            });
+
 
         }
 
         const observer = new MutationObserver(callback);
+
+
+
 
         setTimeout(function () {
             const targetNode = document.getElementsByTagName("body")[0];
             observer.observe(targetNode, config);
         }, 2000);
     })
+
+    function executeCustomScriptWithParameters(script, parameters) {
+
+        return new Promise((resolve, reject) => {
+            Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
+                if (!commonHelper.isNullOrEmpty(event.error)) {
+                    return reject("ExecuteCustomScriptWithParameters: " + event.error.errorMessage);
+                }
+                else if (event.result.IsError) {
+                    return reject("ExecuteCustomScriptWithParameters: " + event.result.ErrorMessage);
+                }
+                return resolve(event.result.Results);
+            });
+        });
+    }
 });
