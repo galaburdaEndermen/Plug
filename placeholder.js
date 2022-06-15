@@ -38,7 +38,22 @@ define(function (require) {
 
             // }
 
-            let script = "select CAST(CONVERT(CHAR(16), dReceievedDate,20) AS datetime) from [order] where source = 'DIRECT' and subSource = 'US DEV Shopify' and CAST(CONVERT(CHAR(16), dReceievedDate,20) AS datetime) = CAST('07 Jun 2022 15:04' AS DATETIME)";
+            // new Date(year, month, day);
+
+            let script = `
+            select  
+            pkOrderId as Id,
+            DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dReceievedDate), 0) as OrderDate,
+            DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dProcessedOn), 0) as ProcessedOn
+
+            from [order]
+            where 
+            source = 'DIRECT' 
+            and subSource = ''
+            and dProcessedOn is not null 
+            and FORMAT(fTotalCharge, 'N2') = '710.48'
+            and [order].cFullName like '%test test boy%'
+            `;
             let parameters = [];
             Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
                 if (event.result.IsError) {
