@@ -124,9 +124,18 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
             let t3 = Services;
+            let t1 = $scope;
+            let t2 = $scope.viewStats;
+
 
             let divs = document.getElementsByTagName("div");
-            let sas = document.getElementById("placeholderPrintLabelsButtond");
+            let buttons = document.getElementsByTagName("button");
+            for (var button of buttons) {
+                if (button.innerHTML.includes("Action Credit Note")) {
+                    // placeholderPrintLabelsButtond
+                    button.remove();
+                }
+            }
             for (var form of divs) {
                 if (form.className.includes("ProcessedOrders_RefundsView")) {
                     let inputs = form.getElementsByTagName("input");
