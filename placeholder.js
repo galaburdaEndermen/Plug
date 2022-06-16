@@ -92,10 +92,10 @@ define(function (require) {
                             button.disabled = true;
                         }
                     }
-                    let inputs = document.getElementsByTagName("input");
-                    for (var input of inputs) {
-                        if (input.getAttribute("ng-model") === "refund.Amount") {
-                            input.disabled = true;
+                    let inputs2 = document.getElementsByTagName("input");
+                    for (var input2 of inputs2) {
+                        if (input2.getAttribute("ng-model") === "refund.Amount") {
+                            input2.disabled = true;
                         }
                     }
 
