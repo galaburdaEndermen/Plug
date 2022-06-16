@@ -77,6 +77,30 @@ define(function (require) {
                                 }
                                 else {
                                     order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
+                                    if (order) {
+                                        let buttons = document.getElementsByTagName("button");
+                                        if (order.PropertyName && (order.PropertyValue.includes("N442.000"))) {
+                                            for (var button of buttons) {
+                                                if (button.getAttribute("lw-tst") === "removeRefund") {
+                                                    button.disabled = true;
+                                                }
+                                            }
+                                            let inputs2 = document.getElementsByTagName("input");
+                                            for (var input2 of inputs2) {
+                                                if (input2.getAttribute("ng-model") === "refund.Amount") {
+                                                    input2.disabled = true;
+                                                }
+                                            }
+
+                                        }
+                                        else {
+                                            for (var button of buttons) {
+                                                if (button.getAttribute("lw-tst") === "btn_Action") {
+                                                    button.disabled = true;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             });
                         }
