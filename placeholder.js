@@ -125,6 +125,7 @@ define(function (require) {
         var callback = function (mutationsList, observer) {
             let t3 = Services;
             let t1 = $scope;
+            console.log(t1);
             let t2 = $scope.viewStats;
 
 
