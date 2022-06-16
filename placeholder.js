@@ -15,7 +15,7 @@ define(function (require) {
         let order = undefined;
 
         var callback = function (mutationsList, observer) {
-            if (!(customer && source && orderDate && orderTotal && subSource && processedDate)) {
+            if (!(orderDate && orderTotal && processedDate)) {
                 let divs = document.getElementsByTagName("div");
                 for (var form of divs) {
                     if (form.className.includes("ProcessedOrders_RefundsView")) {
@@ -51,7 +51,7 @@ define(function (require) {
                             }
                         }
 
-                        if (customer && source && orderDate && orderTotal && subSource && processedDate) {
+                        if (orderDate && orderTotal && processedDate) {
                             let script = `
                             select  
                             pkOrderId as Id,
