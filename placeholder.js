@@ -112,6 +112,7 @@ define(function (require) {
 
         this.onClick = () => {
             console.log("TEST BUTTON")
+            console.log($scope);
         };
 
 
@@ -134,7 +135,7 @@ define(function (require) {
             for (var button of buttons) {
                 if (button.innerHTML.includes("Action Credit Note")) {
                     // placeholderPrintLabelsButtond
-                    button.remove();
+                    // button.remove();
                 }
             }
             for (var form of divs) {
