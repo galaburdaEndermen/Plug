@@ -98,8 +98,8 @@ define(function (require) {
                 key: "placeholderPrintLabelsButtond",  // Button id (unique)
                 icon: "fa fa-print",  // Button icon
                 content: {
-                    moduleName: "placeholderPrintLabelsButtonTemplated",
-                    controlName: "placeholderPrintLabelsButtonTemplated"
+                    moduleName: "placeholderPrintLabelsButtonTemplate",
+                    controlName: "placeholderPrintLabelsButtonTemplate"
                 }
             }];
 
