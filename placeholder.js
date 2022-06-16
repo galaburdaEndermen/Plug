@@ -75,8 +75,9 @@ define(function (require) {
                                 for (var r of event.result.Results) {
                                     let b1 = new Date(r.OrderDate).toISOString() === orderDate;
                                     let b2 = new Date(r.ProcessedOn).toISOString() === processedDate;
+                                    let sas44 = "lel";
                                 }
-                                let order = event.result.Results.find(r => r.OrderDate === orderDate && r.ProcessedOn === processedDate);
+                                let order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
                                 if (order) {
                                     let orderId = order.Id;
                                 }
