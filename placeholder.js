@@ -5,84 +5,106 @@ define(function (require) {
         const config = { childList: true, subtree: true };
         const ngServiceDecorator = require("core/ngService");
 
+        let customer = '';
+        let source = '';
+        let orderDate = '';
+        let orderTotal = '';
+        let subSource = '';
+        let refundHeader = '';
+        let processedDate = '';
+        let order = undefined;
+
         var callback = function (mutationsList, observer) {
-            let t3 = Services;
+            if (!(customer && source && orderDate && orderTotal && subSource && processedDate)) {
+                let divs = document.getElementsByTagName("div");
+                for (var form of divs) {
+                    if (form.className.includes("ProcessedOrders_RefundsView")) {
+                        let inputs = form.getElementsByTagName("input");
+                        let h3s = form.getElementsByTagName("h3");
+                        for (var input of inputs) {
+                            if (input.getAttribute("lw-tst") === "label_Customer") {
+                                customer = input.value;
+                            }
+                            if (input.getAttribute("lw-tst") === "label_Source") {
+                                source = input.value;
+                            }
+                            if (input.getAttribute("lw-tst") === "label_OrderDate") {
+                                orderDate = new Date(input.value).toISOString()
+                            }
+                            if (input.getAttribute("lw-tst") === "label_OrderTotal") {
+                                orderTotal = input.value.split(' ')[0];
+                            }
+                            if (input.getAttribute("lw-tst") === "label_Subsource") {
+                                subSource = input.value;
+                            }
+                            if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
+                                processedDate = new Date(input.value).toISOString()
+                            }
+                            if (customer && source && orderDate && orderTotal && subSource && processedDate) {
+                                break;
+                            }
+                        }
+                        for (var h3 of h3s) {
+                            if (h3.innerHTML.includes("Refunds - Refund #")) {
+                                refundHeader = h3.innerHTML.replace("Refunds - Refund #", "").trim();
+                                break;
+                            }
+                        }
 
-            let divs = document.getElementsByTagName("div");
-            for (var form of divs) {
-                if (form.className.includes("ProcessedOrders_RefundsView")) {
-                    let inputs = form.getElementsByTagName("input");
-                    let h3s = form.getElementsByTagName("h3");
-                    let customer = '';
-                    let source = '';
-                    let orderDate = '';
-                    let orderTotal = '';
-                    let subSource = '';
-                    let refundHeader = '';
-                    let processedDate = '';
+                        if (customer && source && orderDate && orderTotal && subSource && processedDate) {
+                            let script = `
+                            select  
+                            pkOrderId as Id,
+                            DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dReceievedDate), 0) as OrderDate,
+                            DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dProcessedOn), 0) as ProcessedOn,
+                            PropertyName,
+                            PropertyValue
+    
+                            from [order]
+                            left join Order_ExtendedProperties on pkOrderId = fkOrderId and PropertyName like 'VertexCall_100245'
+                            where 
+                            source = '${source}' 
+                            and subSource = '${subSource}' 
+                            and dProcessedOn is not null 
+                            and FORMAT(fTotalCharge, 'N2') = '${orderTotal}'
+                            and [order].cFullName like '%${customer}%'
+                            `;
+                            let parameters = [];
+                            Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
+                                if (event.result.IsError) {
+                                    console.log("Error in refunds placeholder");
+                                    console.log(event.result);
+                                }
+                                else {
+                                    order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
+                                }
+                            });
+                        }
+                        break;
+                    }
+                }
+            }
+            if (order) {
+                let buttons = document.getElementsByTagName("button");
+                if (order.PropertyName && (order.PropertyValue.includes("N442.000"))) {
+                    for (var button of buttons) {
+                        if (button.getAttribute("lw-tst") === "removeRefund") {
+                            button.disabled = true;
+                        }
+                    }
+                    let inputs = document.getElementsByTagName("input");
                     for (var input of inputs) {
-                        if (input.getAttribute("lw-tst") === "label_Customer") {
-                            customer = input.value;
-                        }
-                        if (input.getAttribute("lw-tst") === "label_Source") {
-                            source = input.value;
-                        }
-                        if (input.getAttribute("lw-tst") === "label_OrderDate") {
-                            orderDate = new Date(input.value).toISOString()
-                        }
-                        if (input.getAttribute("lw-tst") === "label_OrderTotal") {
-                            orderTotal = input.value.split(' ')[0];
-                        }
-                        if (input.getAttribute("lw-tst") === "label_Subsource") {
-                            subSource = input.value;
-                        }
-                        if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
-                            processedDate = new Date(input.value).toISOString()
-                        }
-                    }
-                    for (var h3 of h3s) {
-                        if (h3.innerHTML.includes("Refunds - Refund #")) {
-                            refundHeader = h3.innerHTML.replace("Refunds - Refund #", "").trim();
-                            break;
+                        if (input.getAttribute("ng-model") === "refund.Amount") {
+                            input.disabled = true;
                         }
                     }
 
-                    if (orderTotal) {
-                        let script = `
-                        select  
-                        pkOrderId as Id,
-                        DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dReceievedDate), 0) as OrderDate,
-                        DATEADD(MINUTE, DATEDIFF(MINUTE, 0, dProcessedOn), 0) as ProcessedOn,
-                        PropertyName,
-                        PropertyValue
-
-                        from [order]
-                        left join Order_ExtendedProperties on pkOrderId = fkOrderId and PropertyName like 'VertexCall_100245'
-                        where 
-                        source = '${source}' 
-                        and subSource = '${subSource}' 
-                        and dProcessedOn is not null 
-                        and FORMAT(fTotalCharge, 'N2') = '${orderTotal}'
-                        and [order].cFullName like '%${customer}%'
-                        `;
-                        let parameters = [];
-                        Services.executeRequestBySession({}, `/api/Dashboards/ExecuteCustomScriptWithParameters`, { script, parameters }, event => {
-                            if (event.result.IsError) {
-                                let lal = event.result;
-                            }
-                            else {
-                                console.log(event.result.Results);
-                                for (var r of event.result.Results) {
-                                    let b1 = new Date(r.OrderDate).toISOString() === orderDate;
-                                    let b2 = new Date(r.ProcessedOn).toISOString() === processedDate;
-                                    let sas44 = "lel";
-                                }
-                                let order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
-                                if (order) {
-                                    let orderId = order.Id;
-                                }
-                            }
-                        });
+                }
+                else {
+                    for (var button of buttons) {
+                        if (button.getAttribute("lw-tst") === "btn_Action") {
+                            button.disabled = true;
+                        }
                     }
                 }
             }
