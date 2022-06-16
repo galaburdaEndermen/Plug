@@ -113,6 +113,7 @@ define(function (require) {
         this.onClick = () => {
             console.log("TEST BUTTON")
             console.log($scope);
+            console.log($element);
         };
 
 
