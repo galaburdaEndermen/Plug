@@ -73,8 +73,8 @@ define(function (require) {
                             else {
                                 console.log(event.result.Results);
                                 for (var r of event.result.Results) {
-                                    let b1 = r.OrderDate === orderDate;
-                                    let b2 = r.ProcessedOn === processedDate;
+                                    let b1 = new Date(r.OrderDate).toISOString() === orderDate;
+                                    let b2 = new Date(r.ProcessedOn).toISOString() === processedDate;
                                 }
                                 let order = event.result.Results.find(r => r.OrderDate === orderDate && r.ProcessedOn === processedDate);
                                 if (order) {
