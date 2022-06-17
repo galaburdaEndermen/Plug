@@ -14,6 +14,8 @@ define(function (require) {
         let processedDate = '';
         let order = undefined;
 
+        const regex = /S-O[0-9]+.[0-9]+-N[0-9]+.[0-9]+/gmi;
+
         var callback = function (mutationsList, observer) {
             if (!(orderDate && orderTotal && processedDate)) {
                 let divs = document.getElementsByTagName("div");
@@ -61,7 +63,7 @@ define(function (require) {
                             PropertyValue
     
                             from [order]
-                            left join Order_ExtendedProperties on pkOrderId = fkOrderId and PropertyName like 'VertexCall_100245'
+                            left join Order_ExtendedProperties on pkOrderId = fkOrderId and PropertyName like 'VertexCall_${refundHeader}'
                             where 
                             source = '${source}' 
                             and subSource = '${subSource}' 
@@ -110,7 +112,7 @@ define(function (require) {
             }
             if (order) {
                 let buttons = document.getElementsByTagName("button");
-                if (order.PropertyName && (order.PropertyValue.includes("N442.000"))) {
+                if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
                     for (var button of buttons) {
                         if (button.getAttribute("lw-tst") === "removeRefund") {
                             button.disabled = true;
