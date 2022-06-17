@@ -81,7 +81,7 @@ define(function (require) {
                                     order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
                                     if (order) {
                                         let buttons = document.getElementsByTagName("button");
-                                        if (order.PropertyName && (order.PropertyValue.includes("N442.000"))) {
+                                        if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
                                             for (var button of buttons) {
                                                 if (button.getAttribute("lw-tst") === "removeRefund") {
                                                     button.disabled = true;
