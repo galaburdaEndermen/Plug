@@ -115,6 +115,7 @@ define(function (require) {
                 if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
                     for (var button of buttons) {
                         if (button.getAttribute("lw-tst") === "removeRefund") {
+
                             button.disabled = true;
                         }
                     }
