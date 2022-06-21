@@ -23,9 +23,9 @@ define(function (require) {
                     let inputs = form.getElementsByTagName("input");
                     let h3s = form.getElementsByTagName("h3");
                     for (var input of inputs) {
-                        if (customer && source && orderDate && orderTotal) {
-                            break;
-                        }
+                        // if (customer && source && orderDate && orderTotal) {
+                        //     break;
+                        // }
                         if (input.getAttribute("lw-tst") === "label_Customer") {
                             customer = input.value;
                             continue;
