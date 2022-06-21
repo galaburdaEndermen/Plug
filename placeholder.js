@@ -74,7 +74,7 @@ define(function (require) {
                         order = undefined;
                     }
 
-                    if (orderDate && orderTotal) {
+                    if (orderDate && orderTotal && !order) {
                         let script = `
                             select  
                             pkOrderId as Id,
@@ -135,6 +135,33 @@ define(function (require) {
                                 }
                             }
                         });
+                    }
+                    if (order) {
+                        let buttons = document.getElementsByTagName("button");
+                        if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
+                            for (var button of buttons) {
+                                if (button.getAttribute("lw-tst") === "removeRefund") {
+                                    button.disabled = true;
+                                    break;
+                                }
+                            }
+                            let inputs2 = document.getElementsByTagName("input");
+                            for (var input2 of inputs2) {
+                                if (input2.getAttribute("ng-model") === "refund.Amount") {
+                                    input2.disabled = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        else {
+                            for (var button of buttons) {
+                                if (button.getAttribute("lw-tst") === "btn_Action") {
+                                    button.disabled = true;
+                                    break;
+                                }
+                            }
+                        }
                     }
                     break;
                 }
