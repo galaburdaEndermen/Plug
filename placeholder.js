@@ -26,28 +26,33 @@ define(function (require) {
                     let inputs = form.getElementsByTagName("input");
                     let h3s = form.getElementsByTagName("h3");
                     for (var input of inputs) {
+                        if (customer && source && orderDate && orderTotal) {
+                            break;
+                        }
                         if (input.getAttribute("lw-tst") === "label_Customer") {
                             customer = input.value;
+                            continue;
                         }
                         if (input.getAttribute("lw-tst") === "label_Source") {
                             source = input.value;
+                            continue;
                         }
                         if (input.getAttribute("lw-tst") === "label_OrderDate") {
-                            orderDate = new Date(input.value).toISOString()
+                            orderDate = new Date(input.value).toISOString();
+                            continue;
                         }
                         if (input.getAttribute("lw-tst") === "label_OrderTotal") {
                             orderTotal = input.value.split(' ')[0];
+                            continue;
                         }
                         if (input.getAttribute("lw-tst") === "label_Subsource") {
                             subSource = input.value;
+                            continue;
                         }
                         if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
                             if (input.value) {
-                                processedDate = new Date(input.value).toISOString()
+                                processedDate = new Date(input.value).toISOString();
                             }
-                        }
-                        if (customer && source && orderDate && orderTotal && subSource) {
-                            break;
                         }
                     }
                     for (var h3 of h3s) {
@@ -95,12 +100,14 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "removeRefund") {
                                                 button.disabled = true;
+                                                break;
                                             }
                                         }
                                         let inputs2 = document.getElementsByTagName("input");
                                         for (var input2 of inputs2) {
                                             if (input2.getAttribute("ng-model") === "refund.Amount") {
                                                 input2.disabled = true;
+                                                break;
                                             }
                                         }
 
@@ -109,6 +116,7 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "btn_Action") {
                                                 button.disabled = true;
+                                                break;
                                             }
                                         }
                                     }
