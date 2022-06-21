@@ -17,9 +17,6 @@ define(function (require) {
         const regex = /S-O[0-9]+.[0-9]+-N[0-9]+.[0-9]+/gmi;
 
         var callback = function (mutationsList, observer) {
-            // if (!(orderDate && orderTotal && processedDate)) {
-
-            // }
             let divs = document.getElementsByTagName("div");
             for (var form of divs) {
                 if (form.className.includes("ProcessedOrders_RefundsView")) {
@@ -127,32 +124,6 @@ define(function (require) {
                     break;
                 }
             }
-
-            // if (order) {
-            //     let buttons = document.getElementsByTagName("button");
-            //     if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
-            //         for (var button of buttons) {
-            //             if (button.getAttribute("lw-tst") === "removeRefund") {
-
-            //                 button.disabled = true;
-            //             }
-            //         }
-            //         let inputs2 = document.getElementsByTagName("input");
-            //         for (var input2 of inputs2) {
-            //             if (input2.getAttribute("ng-model") === "refund.Amount") {
-            //                 input2.disabled = true;
-            //             }
-            //         }
-
-            //     }
-            //     else {
-            //         for (var button of buttons) {
-            //             if (button.getAttribute("lw-tst") === "btn_Action") {
-            //                 button.disabled = true;
-            //             }
-            //         }
-            //     }
-            // }
         }
 
         const observer = new MutationObserver(callback);
