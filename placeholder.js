@@ -44,7 +44,7 @@ define(function (require) {
                         if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
                             processedDate = new Date(input.value).toISOString()
                         }
-                        if (customer && source && orderDate && orderTotal && subSource && processedDate) {
+                        if (customer && source && orderDate && orderTotal && subSource) {
                             break;
                         }
                     }
@@ -55,7 +55,7 @@ define(function (require) {
                         }
                     }
 
-                    if (orderDate && orderTotal && processedDate) {
+                    if (orderDate && orderTotal) {
                         let script = `
                             select  
                             pkOrderId as Id,
