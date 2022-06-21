@@ -138,6 +138,16 @@ define(function (require) {
                     }
                     break;
                 }
+                else {
+                    customer = '';
+                    source = '';
+                    orderDate = '';
+                    orderTotal = '';
+                    subSource = '';
+                    refundHeader = '';
+                    processedDate = '';
+                    order = undefined;
+                }
             }
         }
 
