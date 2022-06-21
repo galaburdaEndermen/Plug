@@ -69,7 +69,6 @@ define(function (require) {
                             where 
                             source = '${source}' 
                             and subSource = '${subSource}' 
-                            and dProcessedOn is not null 
                             and FORMAT(fTotalCharge, 'N2') = '${orderTotal}'
                             and [order].cFullName like '%${customer}%'
                             `;
@@ -80,7 +79,14 @@ define(function (require) {
                                 console.log(event.result);
                             }
                             else {
-                                order = event.result.Results.find(r => new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate);
+                                order = event.result.Results.find(r => {
+                                    if (r.ProcessedOn) {
+                                        return new Date(r.OrderDate).toISOString() === orderDate && new Date(r.ProcessedOn).toISOString() === processedDate;
+                                    }
+                                    else {
+                                        return new Date(r.OrderDate).toISOString() === orderDate;
+                                    }
+                                });
                                 if (order) {
                                     let buttons = document.getElementsByTagName("button");
                                     if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
