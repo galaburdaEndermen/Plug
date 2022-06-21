@@ -57,6 +57,21 @@ define(function (require) {
                             refundHeader = h3.innerHTML.replace("Refunds - Refund #", "").trim();
                             break;
                         }
+                        else {
+                            refundHeader = '';
+                        }
+                    }
+
+
+                    if (!refundHeader) {
+                        customer = '';
+                        source = '';
+                        orderDate = '';
+                        orderTotal = '';
+                        subSource = '';
+                        refundHeader = '';
+                        processedDate = '';
+                        order = undefined;
                     }
 
                     if (orderDate && orderTotal) {
