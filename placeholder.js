@@ -42,7 +42,9 @@ define(function (require) {
                             subSource = input.value;
                         }
                         if (input.getAttribute("lw-tst") === "label_ProcessedDate") {
-                            processedDate = new Date(input.value).toISOString()
+                            if (input.value) {
+                                processedDate = new Date(input.value).toISOString()
+                            }
                         }
                         if (customer && source && orderDate && orderTotal && subSource) {
                             break;
