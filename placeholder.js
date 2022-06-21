@@ -18,8 +18,10 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
             let divs = document.getElementsByTagName("div");
+            let found = false;
             for (var form of divs) {
                 if (form.className.includes("ProcessedOrders_RefundsView")) {
+                    found = true;
                     let inputs = form.getElementsByTagName("input");
                     let h3s = form.getElementsByTagName("h3");
                     for (var input of inputs) {
@@ -165,16 +167,16 @@ define(function (require) {
                     }
                     break;
                 }
-                else {
-                    customer = '';
-                    source = '';
-                    orderDate = '';
-                    orderTotal = '';
-                    subSource = '';
-                    refundHeader = '';
-                    processedDate = '';
-                    order = undefined;
-                }
+            }
+            if (!found) {
+                customer = '';
+                source = '';
+                orderDate = '';
+                orderTotal = '';
+                subSource = '';
+                refundHeader = '';
+                processedDate = '';
+                order = undefined;
             }
         }
 
