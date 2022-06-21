@@ -25,9 +25,6 @@ define(function (require) {
                     let inputs = form.getElementsByTagName("input");
                     let h3s = form.getElementsByTagName("h3");
                     for (var input of inputs) {
-                        // if (customer && source && orderDate && orderTotal) {
-                        //     break;
-                        // }
                         if (input.getAttribute("lw-tst") === "label_Customer") {
                             customer = input.value;
                             continue;
@@ -74,6 +71,7 @@ define(function (require) {
                         refundHeader = '';
                         processedDate = '';
                         order = undefined;
+                        break;
                     }
 
                     if (orderDate && orderTotal && !order) {
@@ -114,14 +112,12 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "removeRefund") {
                                                 button.disabled = true;
-                                                break;
                                             }
                                         }
                                         let inputs2 = document.getElementsByTagName("input");
                                         for (var input2 of inputs2) {
                                             if (input2.getAttribute("ng-model") === "refund.Amount") {
                                                 input2.disabled = true;
-                                                break;
                                             }
                                         }
 
@@ -144,14 +140,12 @@ define(function (require) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "removeRefund") {
                                     button.disabled = true;
-                                    break;
                                 }
                             }
                             let inputs2 = document.getElementsByTagName("input");
                             for (var input2 of inputs2) {
                                 if (input2.getAttribute("ng-model") === "refund.Amount") {
                                     input2.disabled = true;
-                                    break;
                                 }
                             }
 
