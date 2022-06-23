@@ -57,9 +57,11 @@ define(function (require) {
         const makeDisabled = (element) => {
             element.disabled = true;
             let newE = element.cloneNode(true);
-            newE.style.overflow = "visible";
-            newE.className += " has-tooltip"
-            newE.innerHTML = newE.innerHTML + innerTooltip;
+            // newE.style.overflow = "visible";
+            if (!newE.innerHTML.includes(innerTooltip)) {
+                newE.className += " has-tooltip"
+                newE.innerHTML = newE.innerHTML + innerTooltip;
+            }
             element.replaceWith(newE);
 
 
@@ -78,21 +80,21 @@ define(function (require) {
 
 
             for (var elem of elems) {
-                if (elem.style.overflow) {
-                    if (elem.style.overflow !== "auto") {
-                        // elem.style.overflow = "visible";
-                        let sas = "lel";
-                    }
-                }
+                // if (elem.style.overflow) {
+                //     if (elem.style.overflow !== "auto") {
+                //         // elem.style.overflow = "visible";
+                //         let sas = "lel";
+                //     }
+                // }
                 if (elem.className.includes("cell")) {
                     let lalal = "kek";
                     // elem.style.overflow = "visible";
                     elem.removeAttribute("title");
                 }
-                if (elem.className.includes("viewport")) {
-                    let lalal = "kek";
-                    // elem.style.overflowX = "visible";
-                }
+                // if (elem.className.includes("viewport")) {
+                //     let lalal = "kek";
+                //     // elem.style.overflowX = "visible";
+                // }
             }
 
 
