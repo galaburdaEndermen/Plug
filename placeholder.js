@@ -12,6 +12,7 @@ define(function (require) {
             '' +
             '        .tooltip-wrapper {' +
             '            position: absolute;' +
+            '            z-index: 100000;' +
             '            visibility: hidden;' +
             '        }' +
             '' +
@@ -23,6 +24,7 @@ define(function (require) {
             '        .tooltip {' +
             '            display: block;' +
             '            position: relative;' +
+            '            z-index: 100000;' +
             '            top: 2em;' +
             '            right: 100%;' +
             '            width: 140px;' +
