@@ -43,6 +43,7 @@ define(function (require) {
                 let newE = element.cloneNode(true);
                 newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
                 newE.className += " tooltip";
+                newE.overflow = "visible";
                 element.replaceWith(newE);
 
                 let a = newE;
