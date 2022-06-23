@@ -39,7 +39,7 @@ define(function (require) {
         const makeDisabled = (element) => {
             element.disabled = true;
 
-            if (!newE.innerHTML.includes("Tooltip")) {
+            if (!element.innerHTML.includes("Tooltip")) {
                 let newE = element.cloneNode(true);
                 newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
                 newE.className += " tooltip";
