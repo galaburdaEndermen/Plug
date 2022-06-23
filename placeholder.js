@@ -3,73 +3,98 @@
 define(function (require) {
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
-        const tooltipStyle = '' +
-            '<style>' +
-            '            /* Tooltip container */' +
-            '            .tooltip {' +
-            '                position: relative;' +
-            '                display: inline-block;' +
-            '            }' +
+        var tooltipStyle = '' +
+            ' <style>' +
+            '        .has-tooltip {' +
+            '            /*position: relative;*/' +
+            '            display: inline;' +
+            '        }' +
             '' +
-            '            /* Tooltip text */' +
-            '            .tooltip .tooltiptext {' +
-            '                visibility: hidden;' +
-            '                width: 300px;' +
-            '                background-color: white;' +
-            '                color: black;' +
-            '                text-align: center;' +
-            '                padding: 5px 0;' +
-            '                border-radius: 6px;' +
-            '                /* Position the tooltip text - see examples below! https://www.w3schools.com/css/css_tooltip.asp*/' +
-            '                position: absolute;' +
-            '                /* top: -5px; */' +
-            '                /* left: 105%; */' +
-            '                z-index: 10000;' +
-            '            }' +
+            '        .tooltip-wrapper {' +
+            '            position: absolute;' +
+            '            visibility: hidden;' +
+            '        }' +
             '' +
-            '            /* Show the tooltip text when you mouse over the tooltip container */' +
-            '            .tooltip:hover .tooltiptext {' +
-            '                visibility: visible;' +
-            '            }' +
-            '        </style>' +
-            '        <span class="tooltiptext">You can not create this booking as it is outside your return date authorization window.' +
-            '            </span>' +
+            '        .has-tooltip:hover .tooltip-wrapper {' +
+            '            visibility: visible;' +
+            '            opacity: 0.7;' +
+            '        }' +
+            '' +
+            '        .tooltip {' +
+            '            display: block;' +
+            '            position: relative;' +
+            '            top: 2em;' +
+            '            right: 100%;' +
+            '            width: 140px;' +
+            '            height: 96px;' +
+            '            /*margin-left: -76px;*/' +
+            '            color: #FFFFFF;' +
+            '            background: #000000;' +
+            '            line-height: 96px;' +
+            '            text-align: center;' +
+            '            border-radius: 8px;' +
+            '            box-shadow: 4px 3px 10px #800000;' +
+            '        }' +
+            '' +
+            '        .tooltip:after {' +
+            '            content: \'\';' +
+            '            position: absolute;' +
+            '            bottom: 100%;' +
+            '            left: 50%;' +
+            '            margin-left: -8px;' +
+            '            width: 0;' +
+            '            height: 0;' +
+            '            border-bottom: 8px solid #000000;' +
+            '            border-right: 8px solid transparent;' +
+            '            border-left: 8px solid transparent;' +
+            '        }' +
+            '    </style>' +
+            '';
+        var innerTooltip = ' ' +
+            '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
             '';
 
         const makeDisabled = (element) => {
             element.disabled = true;
+            let newE = element.cloneNode(true);
+            newE.style.overflow = "visible";
+            newE.className += " has-tooltip"
+            newE.innerHTML = newE.innerHTML + innerTooltip;
 
-            if (!element.innerHTML.includes("Tooltip")) {
-                let newE = element.cloneNode(true);
-                newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
-                newE.className += " tooltip";
-                newE.style.overflow = "visible";
-                element.replaceWith(newE);
+            let a = newE;
+            let elems = [];
+            while (a) {
+                elems.unshift(a);
+                a = a.parentElement;
+            }
 
-                let a = newE;
-                let elems = [];
-                while (a) {
-                    elems.unshift(a);
-                    a = a.parentElement;
+
+            if (!elems[2].innerHTML.includes("Tooltip")) {
+                elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
+            }
+
+
+
+            for (var elem of elems) {
+                if (elem.style.overflow) {
+                    if (elem.style.overflow !== "auto") {
+                        // elem.style.overflow = "visible";
+                        let sas = "lel";
+                    }
                 }
-
-                for (var elem of elems) {
-                    if (elem.style.overflow) {
-                        if (elem.style.overflow !== "auto") {
-                            // elem.style.overflow = "visible";
-                            let sas = "lel";
-                        }
-                    }
-                    if (elem.className.includes("cell")) {
-                        let lalal = "kek";
-                        elem.style.overflow = "visible";
-                    }
-                    if (elem.className.includes("viewport")) {
-                        let lalal = "kek";
-                        elem.style.overflowX = "visible";
-                    }
+                if (elem.className.includes("cell")) {
+                    let lalal = "kek";
+                    // elem.style.overflow = "visible";
+                    elem.removeAttribute("title");
+                }
+                if (elem.className.includes("viewport")) {
+                    let lalal = "kek";
+                    // elem.style.overflowX = "visible";
                 }
             }
+
+            element.replaceWith(newE);
+
 
             // var elems = document.body.getElementsByTagName("*");
             // for (var elem of elems) {
