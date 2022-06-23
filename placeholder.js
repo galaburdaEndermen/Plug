@@ -46,14 +46,31 @@ define(function (require) {
                 element.replaceWith(newE);
             }
 
-            var elems = document.body.getElementsByTagName("*");
+            // var elems = document.body.getElementsByTagName("*");
+            // for (var elem of elems) {
+            //     if (elem.style.overflow) {
+            //         if (elem.style.overflow !== "auto") {
+            //             elem.style.overflow = "visible";
+            //         }
+            //     }
+            // }
+
+            let a = element;
+            let elems = [];
+            while (a) {
+                elems.unshift(a);
+                a = a.parentElement;
+            }
+
             for (var elem of elems) {
                 if (elem.style.overflow) {
                     if (elem.style.overflow !== "auto") {
-                        elem.style.overflow = "visible";
+                        // elem.style.overflow = "visible";
+                        let sas = "lel";
                     }
                 }
             }
+
         }
         const ngServiceDecorator = require("core/ngService");
 
