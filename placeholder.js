@@ -3,6 +3,47 @@
 define(function (require) {
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
+        const tooltipStyle = '' +
+            '<style>' +
+            '            /* Tooltip container */' +
+            '            .tooltip {' +
+            '                position: relative;' +
+            '                display: inline-block;' +
+            '            }' +
+            '' +
+            '            /* Tooltip text */' +
+            '            .tooltip .tooltiptext {' +
+            '                visibility: hidden;' +
+            '                width: 300px;' +
+            '                background-color: white;' +
+            '                color: black;' +
+            '                text-align: center;' +
+            '                padding: 5px 0;' +
+            '                border-radius: 6px;' +
+            '                /* Position the tooltip text - see examples below! https://www.w3schools.com/css/css_tooltip.asp*/' +
+            '                position: absolute;' +
+            '                /* top: -5px; */' +
+            '                /* left: 105%; */' +
+            '                z-index: 1;' +
+            '            }' +
+            '' +
+            '            /* Show the tooltip text when you mouse over the tooltip container */' +
+            '            .tooltip:hover .tooltiptext {' +
+            '                visibility: visible;' +
+            '            }' +
+            '        </style>' +
+            '        <span class="tooltiptext">You can not create this booking as it is outside your return date authorization window.' +
+            '            </span>' +
+            '';
+
+        const makeDisabled = (element) => {
+            element.disabled = true;
+
+            let newE = element.cloneNode(true);
+            newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
+            newE.className += " tooltip";
+            element.replaceWith(newE);
+        }
         const ngServiceDecorator = require("core/ngService");
 
         let customer = '';
@@ -111,13 +152,15 @@ define(function (require) {
                                     if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "removeRefund") {
-                                                button.disabled = true;
+                                                // button.disabled = true;
+                                                makeDisabled(button);
                                             }
                                         }
                                         let inputs2 = document.getElementsByTagName("input");
                                         for (var input2 of inputs2) {
                                             if (input2.getAttribute("ng-model") === "refund.Amount") {
-                                                input2.disabled = true;
+                                                // input2.disabled = true;
+                                                makeDisabled(input2);
                                             }
                                         }
 
@@ -125,7 +168,8 @@ define(function (require) {
                                     else {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "btn_Action") {
-                                                button.disabled = true;
+                                                // button.disabled = true;
+                                                makeDisabled(button);
                                                 break;
                                             }
                                         }
@@ -139,13 +183,15 @@ define(function (require) {
                         if (order.PropertyName && (order.PropertyValue.match(regex) || order.PropertyValue.toUpperCase() === "N")) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "removeRefund") {
-                                    button.disabled = true;
+                                    // button.disabled = true;
+                                    makeDisabled(button);
                                 }
                             }
                             let inputs2 = document.getElementsByTagName("input");
                             for (var input2 of inputs2) {
                                 if (input2.getAttribute("ng-model") === "refund.Amount") {
-                                    input2.disabled = true;
+                                    // input2.disabled = true;
+                                    makeDisabled(input2);
                                 }
                             }
 
@@ -153,7 +199,8 @@ define(function (require) {
                         else {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "btn_Action") {
-                                    button.disabled = true;
+                                    // button.disabled = true;
+                                    makeDisabled(button);
                                     break;
                                 }
                             }
