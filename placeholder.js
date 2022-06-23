@@ -56,57 +56,63 @@ define(function (require) {
 
         const makeDisabled = (element) => {
             element.disabled = true;
-            let newE = element.cloneNode(true);
-            // newE.style.overflow = "visible";
-            if (!newE.innerHTML.includes(innerTooltip)) {
+
+            const bd = document.getElementsByTagName("body")[0];
+            if (!bd.innerHTML.includes(".has-tooltip {")) {
+                bd.innerHTML = tooltipStyle + ' ' + bd.innerHTML;
+            }
+
+            if (!element.innerHTML.includes(innerTooltip)) {
+                let newE = element.cloneNode(true);
+                // newE.style.overflow = "visible";
                 newE.className += " has-tooltip"
                 newE.innerHTML = newE.innerHTML + innerTooltip;
-            }
-            element.replaceWith(newE);
+                element.replaceWith(newE);
 
 
-            let a = newE;
-            let elems = [];
-            while (a) {
-                elems.unshift(a);
-                a = a.parentElement;
-            }
+                let a = newE;
+                let elems = [];
+                while (a) {
+                    elems.unshift(a);
+                    a = a.parentElement;
+                }
 
 
-            if (!elems[2].innerHTML.includes(".has-tooltip {")) {
-                elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
-            }
+                // if (!elems[2].innerHTML.includes(".has-tooltip {")) {
+                //     elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
+                // }
 
 
 
-            for (var elem of elems) {
-                // if (elem.style.overflow) {
-                //     if (elem.style.overflow !== "auto") {
+                // for (var elem of elems) {
+                //     // if (elem.style.overflow) {
+                //     //     if (elem.style.overflow !== "auto") {
+                //     //         // elem.style.overflow = "visible";
+                //     //         let sas = "lel";
+                //     //     }
+                //     // }
+                //     if (elem.className.includes("cell")) {
+                //         let lalal = "kek";
                 //         // elem.style.overflow = "visible";
-                //         let sas = "lel";
+                //         elem.removeAttribute("title");
+                //     }
+                //     // if (elem.className.includes("viewport")) {
+                //     //     let lalal = "kek";
+                //     //     // elem.style.overflowX = "visible";
+                //     // }
+                // }
+
+
+
+                // var elems = document.body.getElementsByTagName("*");
+                // for (var elem of elems) {
+                //     if (elem.style.overflow) {
+                //         if (elem.style.overflow !== "auto") {
+                //             elem.style.overflow = "visible";
+                //         }
                 //     }
                 // }
-                if (elem.className.includes("cell")) {
-                    let lalal = "kek";
-                    // elem.style.overflow = "visible";
-                    elem.removeAttribute("title");
-                }
-                // if (elem.className.includes("viewport")) {
-                //     let lalal = "kek";
-                //     // elem.style.overflowX = "visible";
-                // }
             }
-
-
-
-            // var elems = document.body.getElementsByTagName("*");
-            // for (var elem of elems) {
-            //     if (elem.style.overflow) {
-            //         if (elem.style.overflow !== "auto") {
-            //             elem.style.overflow = "visible";
-            //         }
-            //     }
-            // }
         }
         const ngServiceDecorator = require("core/ngService");
 
