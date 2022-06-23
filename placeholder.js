@@ -39,10 +39,12 @@ define(function (require) {
         const makeDisabled = (element) => {
             element.disabled = true;
 
-            let newE = element.cloneNode(true);
-            newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
-            newE.className += " tooltip";
-            element.replaceWith(newE);
+            if (!newE.innerHTML.includes("Tooltip")) {
+                let newE = element.cloneNode(true);
+                newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
+                newE.className += " tooltip";
+                element.replaceWith(newE);
+            }
         }
         const ngServiceDecorator = require("core/ngService");
 
