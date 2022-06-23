@@ -76,8 +76,10 @@ define(function (require) {
                     elems.unshift(a);
                     a = a.parentElement;
                 }
-                let test = elems[elems.length() - 1];
-
+                let test = elems[elems.length() - 2];
+                if (!test.innerHTML.includes(".has-tooltip {")) {
+                    test.innerHTML = tooltipStyle + ' ' + test.innerHTML;
+                }
 
                 // if (!elems[2].innerHTML.includes(".has-tooltip {")) {
                 //     elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
