@@ -44,6 +44,22 @@ define(function (require) {
                 newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
                 newE.className += " tooltip";
                 element.replaceWith(newE);
+
+                let a = newE;
+                let elems = [];
+                while (a) {
+                    elems.unshift(a);
+                    a = a.parentNode.host;
+                }
+
+                for (var elem of elems) {
+                    if (elem.style.overflow) {
+                        if (elem.style.overflow !== "auto") {
+                            // elem.style.overflow = "visible";
+                            let sas = "lel";
+                        }
+                    }
+                }
             }
 
             // var elems = document.body.getElementsByTagName("*");
@@ -54,23 +70,6 @@ define(function (require) {
             //         }
             //     }
             // }
-
-            let a = newE;
-            let elems = [];
-            while (a) {
-                elems.unshift(a);
-                a = a.parentNode.host;
-            }
-
-            for (var elem of elems) {
-                if (elem.style.overflow) {
-                    if (elem.style.overflow !== "auto") {
-                        // elem.style.overflow = "visible";
-                        let sas = "lel";
-                    }
-                }
-            }
-
         }
         const ngServiceDecorator = require("core/ngService");
 
