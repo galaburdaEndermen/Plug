@@ -47,7 +47,7 @@ define(function (require) {
             }
 
             var elems = document.body.getElementsByTagName("*");
-            for (const elem in elems) {
+            for (var elem of elems) {
                 if (elem.style.overflow) {
                     if (elem.style.overflow !== "visible") {
                         elem.style.overflow = "visible";
