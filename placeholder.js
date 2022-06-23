@@ -45,6 +45,15 @@ define(function (require) {
                 newE.className += " tooltip";
                 element.replaceWith(newE);
             }
+
+            var elems = document.body.getElementsByTagName("*");
+            for (const elem in elems) {
+                if (elem.style.overflow) {
+                    if (elem.style.overflow !== "visible") {
+                        elem.style.overflow = "visible";
+                    }
+                }
+            }
         }
         const ngServiceDecorator = require("core/ngService");
 
