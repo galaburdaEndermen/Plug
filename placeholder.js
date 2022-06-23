@@ -55,7 +55,7 @@ define(function (require) {
             //     }
             // }
 
-            let a = element;
+            let a = newE;
             let elems = [];
             while (a) {
                 elems.unshift(a);
