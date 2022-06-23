@@ -60,6 +60,10 @@ define(function (require) {
                             let sas = "lel";
                         }
                     }
+                    if (elem.className.includes("cell")) {
+                        let lalal = "kek";
+                        elem.style.overflow = "visible";
+                    }
                 }
             }
 
