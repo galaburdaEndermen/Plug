@@ -57,10 +57,10 @@ define(function (require) {
         const makeDisabled = (element) => {
             element.disabled = true;
 
-            const bd = document.getElementsByTagName("body")[0];
-            if (!bd.innerHTML.includes(".has-tooltip {")) {
-                bd.innerHTML = tooltipStyle + ' ' + bd.innerHTML;
-            }
+            // const bd = document.getElementsByTagName("body")[0];
+            // if (!bd.innerHTML.includes(".has-tooltip {")) {
+            //     bd.innerHTML = tooltipStyle + ' ' + bd.innerHTML;
+            // }
 
             if (!element.innerHTML.includes(innerTooltip)) {
                 let newE = element.cloneNode(true);
@@ -76,6 +76,7 @@ define(function (require) {
                     elems.unshift(a);
                     a = a.parentElement;
                 }
+                let test = elems[elems.length() - 1];
 
 
                 // if (!elems[2].innerHTML.includes(".has-tooltip {")) {
