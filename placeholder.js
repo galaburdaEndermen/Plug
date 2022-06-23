@@ -3,6 +3,38 @@
 define(function (require) {
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
+        const tooltipStyleOld = '' +
+            '<style>' +
+            '            /* Tooltip container */' +
+            '            .tooltip {' +
+            '                position: relative;' +
+            '                display: inline-block;' +
+            '            }' +
+            '' +
+            '            /* Tooltip text */' +
+            '            .tooltip .tooltiptext {' +
+            '                visibility: hidden;' +
+            '                width: 300px;' +
+            '                background-color: white;' +
+            '                color: black;' +
+            '                text-align: center;' +
+            '                padding: 5px 0;' +
+            '                border-radius: 6px;' +
+            '                /* Position the tooltip text - see examples below! https://www.w3schools.com/css/css_tooltip.asp*/' +
+            '                position: absolute;' +
+            '                /* top: -5px; */' +
+            '                /* left: 105%; */' +
+            '                z-index: 10000;' +
+            '            }' +
+            '' +
+            '            /* Show the tooltip text when you mouse over the tooltip container */' +
+            '            .tooltip:hover .tooltiptext {' +
+            '                visibility: visible;' +
+            '            }' +
+            '        </style>' +
+            '        <span class="tooltiptext">You can not create this booking as it is outside your return date authorization window.' +
+            '            </span>' +
+            '';
         var tooltipStyle = '' +
             ' <style>' +
             '        .has-tooltip {' +
@@ -59,17 +91,22 @@ define(function (require) {
         const makeDisabled = (element) => {
             element.disabled = true;
 
-            // const bd = document.getElementsByTagName("body")[0];
-            // if (!bd.innerHTML.includes(".has-tooltip {")) {
-            //     bd.innerHTML = tooltipStyle + ' ' + bd.innerHTML;
-            // }
-
-            if (!element.innerHTML.includes(innerTooltip)) {
+            if (!element.innerHTML.includes(".has-tooltip {")) {
                 let newE = element.cloneNode(true);
-                // newE.style.overflow = "visible";
-                newE.className += " has-tooltip"
-                newE.innerHTML = newE.innerHTML + innerTooltip;
+                // newE.innerHTML = tooltipStyle + '\n' + innerTooltip + '\n' + newE.innerHTML;
+                newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
+                newE.className += " has-tooltip";
+                newE.style.overflow = "visible";
                 element.replaceWith(newE);
+
+                let innerEl = document.createElement("span");
+                innerEl.className = "tooltip-wrapper";
+                let innerEl2 = document.createElement("span");
+                let textnode = document.createTextNode("Water");
+                innerEl2.appendChild(textnode);
+                innerEl2.className = "tooltip";
+                innerEl.appendChild(innerEl2);
+                newE.appendChild(innerEl);
 
 
                 let a = newE;
@@ -78,49 +115,34 @@ define(function (require) {
                     elems.unshift(a);
                     a = a.parentElement;
                 }
-                // let test = elems[elems.length() - 2];
-                // if (!test.innerHTML.includes(".has-tooltip {")) {
-                //     test.innerHTML = tooltipStyle + ' ' + test.innerHTML;
-                // }
-
-                // if (!elems[2].innerHTML.includes(".has-tooltip {")) {
-                //     elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
-                // }
-
-
 
                 for (var elem of elems) {
-                    // if (elem.style.overflow) {
-                    //     if (elem.style.overflow !== "auto") {
-                    //         // elem.style.overflow = "visible";
-                    //         let sas = "lel";
-                    //     }
-                    // }
-                    if (elem.className.includes("cell")) {
-                        if (!elem.innerHTML.includes(".has-tooltip {")) {
-                            elem.innerHTML = tooltipStyle + ' ' + elem.innerHTML;
+                    if (elem.style.overflow) {
+                        if (elem.style.overflow !== "auto") {
+                            // elem.style.overflow = "visible";
+                            let sas = "lel";
                         }
-                        // let lalal = "kek";
-                        // elem.style.overflow = "visible";
-                        // elem.removeAttribute("title");
                     }
-                    // if (elem.className.includes("viewport")) {
-                    //     let lalal = "kek";
-                    //     // elem.style.overflowX = "visible";
-                    // }
+                    if (elem.className.includes("cell")) {
+                        let lalal = "kek";
+                        elem.style.overflow = "visible";
+                        elem.removeAttribute("title");
+                    }
+                    if (elem.className.includes("viewport")) {
+                        let lalal = "kek";
+                        elem.style.overflow = "auto";
+                    }
                 }
-
-
-
-                // var elems = document.body.getElementsByTagName("*");
-                // for (var elem of elems) {
-                //     if (elem.style.overflow) {
-                //         if (elem.style.overflow !== "auto") {
-                //             elem.style.overflow = "visible";
-                //         }
-                //     }
-                // }
             }
+
+            // var elems = document.body.getElementsByTagName("*");
+            // for (var elem of elems) {
+            //     if (elem.style.overflow) {
+            //         if (elem.style.overflow !== "auto") {
+            //             elem.style.overflow = "visible";
+            //         }
+            //     }
+            // }
         }
         const ngServiceDecorator = require("core/ngService");
 
