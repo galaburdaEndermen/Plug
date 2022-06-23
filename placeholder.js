@@ -24,7 +24,7 @@ define(function (require) {
             '                position: absolute;' +
             '                /* top: -5px; */' +
             '                /* left: 105%; */' +
-            '                z-index: 1;' +
+            '                z-index: 10000;' +
             '            }' +
             '' +
             '            /* Show the tooltip text when you mouse over the tooltip container */' +
