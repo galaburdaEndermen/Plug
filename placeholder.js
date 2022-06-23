@@ -60,6 +60,8 @@ define(function (require) {
             newE.style.overflow = "visible";
             newE.className += " has-tooltip"
             newE.innerHTML = newE.innerHTML + innerTooltip;
+            element.replaceWith(newE);
+
 
             let a = newE;
             let elems = [];
@@ -93,7 +95,6 @@ define(function (require) {
                 }
             }
 
-            element.replaceWith(newE);
 
 
             // var elems = document.body.getElementsByTagName("*");
