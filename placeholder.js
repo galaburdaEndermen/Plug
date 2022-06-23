@@ -71,7 +71,7 @@ define(function (require) {
             }
 
 
-            if (!elems[2].innerHTML.includes("Tooltip")) {
+            if (!elems[2].innerHTML.includes(".has-tooltip {")) {
                 elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
             }
 
