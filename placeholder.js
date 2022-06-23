@@ -49,7 +49,7 @@ define(function (require) {
                 let elems = [];
                 while (a) {
                     elems.unshift(a);
-                    a = a.parentNode.host;
+                    a = a.parentElement;
                 }
 
                 for (var elem of elems) {
