@@ -64,6 +64,10 @@ define(function (require) {
                         let lalal = "kek";
                         elem.style.overflow = "visible";
                     }
+                    if (elem.className.includes("viewport")) {
+                        let lalal = "kek";
+                        elem.style.overflowX = "visible";
+                    }
                 }
             }
 
