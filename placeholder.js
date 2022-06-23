@@ -76,10 +76,10 @@ define(function (require) {
                     elems.unshift(a);
                     a = a.parentElement;
                 }
-                let test = elems[elems.length() - 2];
-                if (!test.innerHTML.includes(".has-tooltip {")) {
-                    test.innerHTML = tooltipStyle + ' ' + test.innerHTML;
-                }
+                // let test = elems[elems.length() - 2];
+                // if (!test.innerHTML.includes(".has-tooltip {")) {
+                //     test.innerHTML = tooltipStyle + ' ' + test.innerHTML;
+                // }
 
                 // if (!elems[2].innerHTML.includes(".has-tooltip {")) {
                 //     elems[2].innerHTML = tooltipStyle + ' ' + elems[2].innerHTML;
@@ -87,23 +87,26 @@ define(function (require) {
 
 
 
-                // for (var elem of elems) {
-                //     // if (elem.style.overflow) {
-                //     //     if (elem.style.overflow !== "auto") {
-                //     //         // elem.style.overflow = "visible";
-                //     //         let sas = "lel";
-                //     //     }
-                //     // }
-                //     if (elem.className.includes("cell")) {
-                //         let lalal = "kek";
-                //         // elem.style.overflow = "visible";
-                //         elem.removeAttribute("title");
-                //     }
-                //     // if (elem.className.includes("viewport")) {
-                //     //     let lalal = "kek";
-                //     //     // elem.style.overflowX = "visible";
-                //     // }
-                // }
+                for (var elem of elems) {
+                    // if (elem.style.overflow) {
+                    //     if (elem.style.overflow !== "auto") {
+                    //         // elem.style.overflow = "visible";
+                    //         let sas = "lel";
+                    //     }
+                    // }
+                    if (elem.className.includes("cell")) {
+                        if (!elem.innerHTML.includes(".has-tooltip {")) {
+                            elem.innerHTML = tooltipStyle + ' ' + elem.innerHTML;
+                        }
+                        // let lalal = "kek";
+                        // elem.style.overflow = "visible";
+                        // elem.removeAttribute("title");
+                    }
+                    // if (elem.className.includes("viewport")) {
+                    //     let lalal = "kek";
+                    //     // elem.style.overflowX = "visible";
+                    // }
+                }
 
 
 
