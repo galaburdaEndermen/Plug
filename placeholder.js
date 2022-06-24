@@ -10,10 +10,6 @@ define(function (require) {
         var tooltipStyle = '' +
             '<style>' +
             '    .has-tooltip {' +
-            '        background-color: red;' +
-            '        position: absolute;' +
-            '        width: 100%;' +
-            '        overflow: hidden;' +
             '    }' +
             '' +
             '    .tooltip {' +
@@ -23,16 +19,13 @@ define(function (require) {
             '        width: 200px;' +
             '        height: 50px;' +
             '        visibility: hidden;' +
-            '        z-index: 100;' +
+            '        z-index: 10000;' +
             '    }' +
             '' +
             '    .has-tooltip:hover .tooltip {' +
             '        visibility: visible;' +
             '    }' +
             '' +
-            '    .has-tooltip:hover .tooltip {' +
-            '        visibility: visible;' +
-            '    }' +
             '</style>' +
             '';
 
