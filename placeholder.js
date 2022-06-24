@@ -55,6 +55,8 @@ define(function (require) {
                 }
 
                 for (var elem of elems) {
+                    elem.style.zIndex = "none";
+
                     if (elem.style.overflow) {
                         if (elem.style.overflow !== "auto") {
                             // elem.style.overflow = "visible";
