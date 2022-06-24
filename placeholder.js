@@ -105,21 +105,21 @@ define(function (require) {
             }
 
 
-            let a = newE;
-            let elems = [];
-            while (a) {
-                elems.unshift(a);
-                a = a.parentElement;
-            }
-            for (var elem of elems) {
-                // if (elem.className.includes("btn")) {
-                //     if (!elem.innerHTML.includes("span")) {
+            // let a = newE;
+            // let elems = [];
+            // while (a) {
+            //     elems.unshift(a);
+            //     a = a.parentElement;
+            // }
+            // for (var elem of elems) {
+            //     // if (elem.className.includes("btn")) {
+            //     //     if (!elem.innerHTML.includes("span")) {
 
-                //     }
-                //     elem.style.overflow = "visible";
-                //     elem.removeAttribute("title");
-                // }
-            }
+            //     //     }
+            //     //     elem.style.overflow = "visible";
+            //     //     elem.removeAttribute("title");
+            //     // }
+            // }
 
 
 
