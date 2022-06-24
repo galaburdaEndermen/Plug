@@ -93,6 +93,14 @@ define(function (require) {
             let newE = element.cloneNode(true);
             element.replaceWith(newE);
 
+
+            let innerEl = document.createElement("span");
+            innerEl.onclick = function () { alert('blah'); };
+            innerEl.setAttribute("onclick", "alert('blah');");
+            innerEl.setAttribute("click", "alert('blah');");
+            innerEl.style.display = "block";
+            newE.appendChild(innerEl);
+
             let a = newE;
             let elems = [];
             while (a) {
@@ -100,18 +108,13 @@ define(function (require) {
                 a = a.parentElement;
             }
             for (var elem of elems) {
-                if (elem.className.includes("btn")) {
-                    if (!elem.innerHTML.includes("span")) {
-                        let innerEl = document.createElement("span");
-                        innerEl.onclick = function () { alert('blah'); };
-                        innerEl.setAttribute("onclick", "alert('blah');");
-                        innerEl.setAttribute("click", "alert('blah');");
-                        innerEl.style.display = "block";
-                        elem.appendChild(innerEl);
-                    }
-                    elem.style.overflow = "visible";
-                    elem.removeAttribute("title");
-                }
+                // if (elem.className.includes("btn")) {
+                //     if (!elem.innerHTML.includes("span")) {
+
+                //     }
+                //     elem.style.overflow = "visible";
+                //     elem.removeAttribute("title");
+                // }
             }
 
 
