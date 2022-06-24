@@ -126,10 +126,16 @@ define(function (require) {
                     if (elem.className.includes("cell")) {
                         let lalal = "kek";
                         elem.style.overflow = "visible";
+                        elem.style.zIndex = "none";
                         elem.removeAttribute("title");
+                    }
+                    if (elem.className.includes("row")) {
+                        elem.style.overflow = "visible";
+                        elem.style.zIndex = "none";
                     }
                     if (elem.className.includes("viewport")) {
                         let lalal = "kek";
+                        elem.style.zIndex = "none";
                         elem.style.overflow = "auto";
                     }
                 }
