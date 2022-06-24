@@ -3,89 +3,37 @@
 define(function (require) {
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
-        const tooltipStyleOld = '' +
-            '<style>' +
-            '            /* Tooltip container */' +
-            '            .tooltip {' +
-            '                position: relative;' +
-            '                display: inline-block;' +
-            '            }' +
-            '' +
-            '            /* Tooltip text */' +
-            '            .tooltip .tooltiptext {' +
-            '                visibility: hidden;' +
-            '                width: 300px;' +
-            '                background-color: white;' +
-            '                color: black;' +
-            '                text-align: center;' +
-            '                padding: 5px 0;' +
-            '                border-radius: 6px;' +
-            '                /* Position the tooltip text - see examples below! https://www.w3schools.com/css/css_tooltip.asp*/' +
-            '                position: absolute;' +
-            '                /* top: -5px; */' +
-            '                /* left: 105%; */' +
-            '                z-index: 10000;' +
-            '            }' +
-            '' +
-            '            /* Show the tooltip text when you mouse over the tooltip container */' +
-            '            .tooltip:hover .tooltiptext {' +
-            '                visibility: visible;' +
-            '            }' +
-            '        </style>' +
-            '        <span class="tooltiptext">You can not create this booking as it is outside your return date authorization window.' +
-            '            </span>' +
-            '';
+        // var innerTooltip = ' ' +
+        //     '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
+        //     '';
+
         var tooltipStyle = '' +
-            ' <style>' +
-            '        .has-tooltip {' +
-            '            /*position: relative;*/' +
-            '            display: inline;' +
-            '        }' +
+            '<style>' +
+            '    .has-tooltip {' +
+            '        background-color: red;' +
+            '        position: absolute;' +
+            '        width: 100%;' +
+            '        overflow: hidden;' +
+            '    }' +
             '' +
-            '        .tooltip-wrapper {' +
-            '            position: absolute;' +
-            '            z-index: 100000;' +
-            '            visibility: hidden;' +
-            '        }' +
+            '    .tooltip {' +
+            '        position: absolute;' +
+            '        background-color: green;' +
+            '        left: 0%;' +
+            '        width: 200px;' +
+            '        height: 50px;' +
+            '        visibility: hidden;' +
+            '        z-index: 100;' +
+            '    }' +
             '' +
-            '        .has-tooltip:hover .tooltip-wrapper {' +
-            '            visibility: visible;' +
-            '            opacity: 0.7;' +
-            '        }' +
+            '    .has-tooltip:hover .tooltip {' +
+            '        visibility: visible;' +
+            '    }' +
             '' +
-            '        .tooltip {' +
-            '            display: block;' +
-            '            position: relative;' +
-            '            z-index: 100000;' +
-            '            top: 2em;' +
-            '            right: 100%;' +
-            '            width: 140px;' +
-            '            height: 96px;' +
-            '            /*margin-left: -76px;*/' +
-            '            color: #FFFFFF;' +
-            '            background: #000000;' +
-            '            line-height: 96px;' +
-            '            text-align: center;' +
-            '            border-radius: 8px;' +
-            '            box-shadow: 4px 3px 10px #800000;' +
-            '        }' +
-            '' +
-            '        .tooltip:after {' +
-            '            content: \'\';' +
-            '            position: absolute;' +
-            '            bottom: 100%;' +
-            '            left: 50%;' +
-            '            margin-left: -8px;' +
-            '            width: 0;' +
-            '            height: 0;' +
-            '            border-bottom: 8px solid #000000;' +
-            '            border-right: 8px solid transparent;' +
-            '            border-left: 8px solid transparent;' +
-            '        }' +
-            '    </style>' +
-            '';
-        var innerTooltip = ' ' +
-            '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
+            '    .has-tooltip:hover .tooltip {' +
+            '        visibility: visible;' +
+            '    }' +
+            '</style>' +
             '';
 
         const makeDisabled = (element) => {
@@ -100,12 +48,9 @@ define(function (require) {
                 element.replaceWith(newE);
 
                 let innerEl = document.createElement("span");
-                innerEl.className = "tooltip-wrapper";
-                let innerEl2 = document.createElement("span");
+                innerEl.className = "tooltip";
                 let textnode = document.createTextNode("Water");
-                innerEl2.appendChild(textnode);
-                innerEl2.className = "tooltip";
-                innerEl.appendChild(innerEl2);
+                innerEl.appendChild(textnode);
                 newE.appendChild(innerEl);
 
 
