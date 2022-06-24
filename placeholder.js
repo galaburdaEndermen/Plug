@@ -89,11 +89,13 @@ define(function (require) {
             '';
 
         const makeDisabled = (element) => {
-            element.disabled = true;
-            let newE = element.cloneNode(true);
-            element.replaceWith(newE);
 
             if (!newE.innerHTML.includes("span")) {
+
+                element.disabled = true;
+                let newE = element.cloneNode(true);
+                element.replaceWith(newE);
+
                 let innerEl = document.createElement("span");
                 innerEl.onclick = function () { alert('blah'); };
                 innerEl.setAttribute("onclick", "alert('blah');");
