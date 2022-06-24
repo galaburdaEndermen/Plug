@@ -92,7 +92,7 @@ define(function (require) {
 
             if (!element.innerHTML.includes("span")) {
 
-                element.disabled = true;
+                // element.disabled = true;
                 let newE = element.cloneNode(true);
                 element.replaceWith(newE);
 
