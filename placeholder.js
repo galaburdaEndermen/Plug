@@ -97,11 +97,19 @@ define(function (require) {
                 element.replaceWith(newE);
 
                 let innerEl = document.createElement("span");
-                innerEl.onclick = function () { alert('blah'); };
-                innerEl.setAttribute("onclick", "alert('blah');");
-                innerEl.setAttribute("click", "alert('blah');");
+                innerEl.onclick = function () { alert('1'); };
+                innerEl.setAttribute("onclick", "alert('2');");
+                innerEl.setAttribute("click", "alert('3');");
                 innerEl.style.display = "block";
                 newE.appendChild(innerEl);
+
+                newE.removeAttribute("onclick");
+                newE.removeAttribute("click");
+                newE.onclick = null;
+
+                newE.onclick = function () { alert('1'); };
+                newE.setAttribute("onclick", "alert('2');");
+                newE.setAttribute("click", "alert('3');");
             }
 
 
