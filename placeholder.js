@@ -93,13 +93,15 @@ define(function (require) {
             let newE = element.cloneNode(true);
             element.replaceWith(newE);
 
+            if (!newE.innerHTML.includes("span")) {
+                let innerEl = document.createElement("span");
+                innerEl.onclick = function () { alert('blah'); };
+                innerEl.setAttribute("onclick", "alert('blah');");
+                innerEl.setAttribute("click", "alert('blah');");
+                innerEl.style.display = "block";
+                newE.appendChild(innerEl);
+            }
 
-            let innerEl = document.createElement("span");
-            innerEl.onclick = function () { alert('blah'); };
-            innerEl.setAttribute("onclick", "alert('blah');");
-            innerEl.setAttribute("click", "alert('blah');");
-            innerEl.style.display = "block";
-            newE.appendChild(innerEl);
 
             let a = newE;
             let elems = [];
