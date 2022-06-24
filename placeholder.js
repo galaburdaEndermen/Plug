@@ -3,92 +3,119 @@
 define(function (require) {
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
-        // var innerTooltip = ' ' +
-        //     '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
-        //     '';
-
-        var tooltipStyle = '' +
+        const tooltipStyleOld = '' +
             '<style>' +
-            '    .has-tooltip {' +
-            '    }' +
+            '            /* Tooltip container */' +
+            '            .tooltip {' +
+            '                position: relative;' +
+            '                display: inline-block;' +
+            '            }' +
             '' +
-            '    .tooltip {' +
-            '        position: absolute;' +
-            '        background-color: green;' +
-            '        left: 0%;' +
-            '        width: 200px;' +
-            '        height: 50px;' +
-            '        visibility: hidden;' +
-            '        z-index: 10000;' +
-            '    }' +
+            '            /* Tooltip text */' +
+            '            .tooltip .tooltiptext {' +
+            '                visibility: hidden;' +
+            '                width: 300px;' +
+            '                background-color: white;' +
+            '                color: black;' +
+            '                text-align: center;' +
+            '                padding: 5px 0;' +
+            '                border-radius: 6px;' +
+            '                /* Position the tooltip text - see examples below! https://www.w3schools.com/css/css_tooltip.asp*/' +
+            '                position: absolute;' +
+            '                /* top: -5px; */' +
+            '                /* left: 105%; */' +
+            '                z-index: 10000;' +
+            '            }' +
             '' +
-            '    .has-tooltip:hover .tooltip {' +
-            '        visibility: visible;' +
-            '    }' +
+            '            /* Show the tooltip text when you mouse over the tooltip container */' +
+            '            .tooltip:hover .tooltiptext {' +
+            '                visibility: visible;' +
+            '            }' +
+            '        </style>' +
+            '        <span class="tooltiptext">You can not create this booking as it is outside your return date authorization window.' +
+            '            </span>' +
+            '';
+        var tooltipStyle = '' +
+            ' <style>' +
+            '        .has-tooltip {' +
+            '            /*position: relative;*/' +
+            '            display: inline;' +
+            '        }' +
             '' +
-            '</style>' +
+            '        .tooltip-wrapper {' +
+            '            position: absolute;' +
+            '            z-index: 100000;' +
+            '            visibility: hidden;' +
+            '        }' +
+            '' +
+            '        .has-tooltip:hover .tooltip-wrapper {' +
+            '            visibility: visible;' +
+            '            opacity: 0.7;' +
+            '        }' +
+            '' +
+            '        .tooltip {' +
+            '            display: block;' +
+            '            position: relative;' +
+            '            z-index: 100000;' +
+            '            top: 2em;' +
+            '            right: 100%;' +
+            '            width: 140px;' +
+            '            height: 96px;' +
+            '            /*margin-left: -76px;*/' +
+            '            color: #FFFFFF;' +
+            '            background: #000000;' +
+            '            line-height: 96px;' +
+            '            text-align: center;' +
+            '            border-radius: 8px;' +
+            '            box-shadow: 4px 3px 10px #800000;' +
+            '        }' +
+            '' +
+            '        .tooltip:after {' +
+            '            content: \'\';' +
+            '            position: absolute;' +
+            '            bottom: 100%;' +
+            '            left: 50%;' +
+            '            margin-left: -8px;' +
+            '            width: 0;' +
+            '            height: 0;' +
+            '            border-bottom: 8px solid #000000;' +
+            '            border-right: 8px solid transparent;' +
+            '            border-left: 8px solid transparent;' +
+            '        }' +
+            '    </style>' +
+            '';
+        var innerTooltip = ' ' +
+            '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
             '';
 
         const makeDisabled = (element) => {
             element.disabled = true;
+            let newE = element.cloneNode(true);
+            element.replaceWith(newE);
 
-            if (!element.innerHTML.includes(".has-tooltip {")) {
-                let newE = element.cloneNode(true);
-                // newE.innerHTML = tooltipStyle + '\n' + innerTooltip + '\n' + newE.innerHTML;
-                newE.innerHTML = tooltipStyle + ' ' + newE.innerHTML;
-                newE.className += " has-tooltip";
-                newE.style.overflow = "visible";
-                element.replaceWith(newE);
-
-                let innerEl = document.createElement("span");
-                innerEl.className = "tooltip";
-                let textnode = document.createTextNode("Water");
-                innerEl.appendChild(textnode);
-                newE.appendChild(innerEl);
-
-
-                let a = newE;
-                let elems = [];
-                while (a) {
-                    elems.unshift(a);
-                    a = a.parentElement;
-                }
-
-                for (var elem of elems) {
-                    elem.style.zIndex = "none";
-
-                    if (elem.style.overflow) {
-                        if (elem.style.overflow !== "auto") {
-                            // elem.style.overflow = "visible";
-                            let sas = "lel";
-                        }
+            let a = newE;
+            let elems = [];
+            while (a) {
+                elems.unshift(a);
+                a = a.parentElement;
+            }
+            for (var elem of elems) {
+                if (elem.className.includes("btn")) {
+                    if (!elem.innerHTML.includes("span")) {
+                        let innerEl = document.createElement("span");
+                        innerEl.onclick = function () { alert('blah'); };
+                        innerEl.setAttribute("onclick", "alert('blah');");
+                        innerEl.setAttribute("click", "alert('blah');");
+                        innerEl.style.display = "block";
+                        elem.appendChild(innerEl);
                     }
-                    if (elem.className.includes("cell")) {
-                        let lalal = "kek";
-                        elem.style.overflow = "visible";
-                        elem.style.zIndex = "none";
-                        elem.removeAttribute("title");
-                    }
-                    if (elem.className.includes("row")) {
-                        elem.style.overflow = "visible";
-                        elem.style.zIndex = "none";
-                    }
-                    if (elem.className.includes("viewport")) {
-                        let lalal = "kek";
-                        elem.style.zIndex = "none";
-                        elem.style.overflow = "auto";
-                    }
+                    elem.style.overflow = "visible";
+                    elem.removeAttribute("title");
                 }
             }
 
-            // var elems = document.body.getElementsByTagName("*");
-            // for (var elem of elems) {
-            //     if (elem.style.overflow) {
-            //         if (elem.style.overflow !== "auto") {
-            //             elem.style.overflow = "visible";
-            //         }
-            //     }
-            // }
+
+
         }
         const ngServiceDecorator = require("core/ngService");
 
