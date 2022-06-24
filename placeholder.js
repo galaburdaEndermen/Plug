@@ -90,7 +90,7 @@ define(function (require) {
 
         const makeDisabled = (element) => {
 
-            if (!newE.innerHTML.includes("span")) {
+            if (!element.innerHTML.includes("span")) {
 
                 element.disabled = true;
                 let newE = element.cloneNode(true);
