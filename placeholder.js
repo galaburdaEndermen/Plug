@@ -276,7 +276,7 @@ define(function (require) {
                                         for (var input2 of inputs2) {
                                             if (input2.getAttribute("ng-model") === "refund.Amount") {
                                                 // input2.disabled = true;
-                                                makeDisabled(input2);
+                                                // makeDisabled(input2);
                                             }
                                         }
 
@@ -307,7 +307,7 @@ define(function (require) {
                             for (var input2 of inputs2) {
                                 if (input2.getAttribute("ng-model") === "refund.Amount") {
                                     // input2.disabled = true;
-                                    makeDisabled(input2);
+                                    // makeDisabled(input2);
                                 }
                             }
 
