@@ -111,10 +111,10 @@ define(function (require) {
                     if (divWithButtons) {
                         for (var span of divWithButtons.getElementsByTagName("span")) {
                             if (span.classList.contains("invalidity")) {
-                                span.remove();
-                                break;
+                                return;
                             }
                         }
+
 
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;';
