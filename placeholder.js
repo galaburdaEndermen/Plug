@@ -94,22 +94,48 @@ define(function (require) {
 
                 // element.disabled = true;
                 let newE = element.cloneNode(true);
-                element.replaceWith(newE);
 
-                let innerEl = document.createElement("span");
-                innerEl.onclick = function () { alert('1'); };
-                innerEl.setAttribute("onclick", "alert('2');");
-                innerEl.setAttribute("click", "alert('3');");
-                innerEl.style.display = "block";
-                newE.appendChild(innerEl);
+                // let innerEl = document.createElement("span");
+                // innerEl.onclick = function () { alert('1'); };
+                // // innerEl.setAttribute("onclick", "alert('2');");
+                // // innerEl.setAttribute("click", "alert('3');");
+                // innerEl.style.display = "block";
+                // newE.appendChild(innerEl);
 
                 newE.removeAttribute("onclick");
                 newE.removeAttribute("click");
                 newE.onclick = null;
 
-                newE.onclick = function () { alert('1'); };
-                newE.setAttribute("onclick", "alert('2');");
-                newE.setAttribute("click", "alert('3');");
+                newE.onclick = function () {
+                    var divWithButtons = rmaDiv.getElementsByClassName("buttons")[0];
+                    if (divWithButtons) {
+                        for (var span of divWithButtons.getElementsByTagName("span")) {
+                            if (span.classList.contains("invalidity")) {
+                                span.remove();
+                                break;
+                            }
+                        }
+
+                        var tagSpan = document.createElement("span");
+                        tagSpan.style.cssText = 'float:left;color:red;';
+                        var tagI = document.createElement("i");
+                        tagI.innerHTML = "TEST"
+                        tagI.setAttribute("id", "custom-invalidity-text");
+
+
+                        tagSpan.appendChild(tagI);
+                        divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
+
+
+                    }
+
+                    alert('1');
+
+                };
+                // newE.setAttribute("onclick", "alert('2');");
+                // newE.setAttribute("click", "alert('3');");
+
+                element.replaceWith(newE);
             }
 
 
