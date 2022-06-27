@@ -109,6 +109,7 @@ define(function (require) {
                 newE.onclick = null;
 
                 newE.onclick = function () {
+                    var tstst = document.getElementsByClassName("buttons");
                     var divWithButtons = document.getElementsByClassName("buttons")[0];
                     if (divWithButtons) {
                         for (var span of divWithButtons.getElementsByTagName("span")) {
