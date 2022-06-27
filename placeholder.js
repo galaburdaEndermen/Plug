@@ -131,7 +131,7 @@ define(function (require) {
             if (!element.className.includes('tooltip')) {
                 let newE = element.cloneNode(true);
                 newE.className += " tooltip";
-                newE.innerHTML = tooltipStyleOld + ' ' + newE.innerHTML;
+                newE.innerHTML = tooltipStyleOld + ' ' + element.innerHTML;
                 element.replaceWith(newE);
             }
         }
