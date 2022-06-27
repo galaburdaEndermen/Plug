@@ -90,27 +90,10 @@ define(function (require) {
         const testF = () => {
             return 20
         }
-        const makeDisabled = (element, message) => {
-
-            // let test = {
-            //     ["val1"]: 100 - testF(),
-            //     ["val2"]: 1111,
-            //     ["val3"]: 100 - testF(),
-            // }
-
+        const makeButtonDisabled = (element, message) => {
             if (!element.className.includes("click-removed")) {
-
-                // element.disabled = true;
                 let newE = element.cloneNode(true);
-
                 newE.className += " click-removed";
-
-                // let innerEl = document.createElement("span");
-                // innerEl.onclick = function () { alert('1'); };
-                // // innerEl.setAttribute("onclick", "alert('2');");
-                // // innerEl.setAttribute("click", "alert('3');");
-                // innerEl.style.display = "block";
-                // newE.appendChild(innerEl);
 
                 newE.removeAttribute("onclick");
                 newE.removeAttribute("click");
@@ -118,7 +101,6 @@ define(function (require) {
                 let error = message;
 
                 newE.onclick = function () {
-                    var tstst = document.getElementsByClassName("buttons");
                     var divWithButtons = document.getElementsByClassName("buttons")[0];
                     if (divWithButtons) {
                         for (var span of divWithButtons.getElementsByTagName("span")) {
@@ -127,13 +109,11 @@ define(function (require) {
                             }
                         }
 
-
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;';
                         var tagI = document.createElement("i");
                         tagI.innerHTML = error;
                         tagI.setAttribute("id", "custom-invalidity-text");
-
 
                         tagSpan.appendChild(tagI);
                         divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
@@ -142,34 +122,20 @@ define(function (require) {
                             tagSpan.remove();
                         }, 5000);
                     }
-                    // alert('1');
                 };
-                // newE.setAttribute("onclick", "alert('2');");
-                // newE.setAttribute("click", "alert('3');");
-
                 element.replaceWith(newE);
             }
-
-
-            // let a = newE;
-            // let elems = [];
-            // while (a) {
-            //     elems.unshift(a);
-            //     a = a.parentElement;
-            // }
-            // for (var elem of elems) {
-            //     // if (elem.className.includes("btn")) {
-            //     //     if (!elem.innerHTML.includes("span")) {
-
-            //     //     }
-            //     //     elem.style.overflow = "visible";
-            //     //     elem.removeAttribute("title");
-            //     // }
-            // }
-
-
-
         }
+
+        const makeInputDisabled = (element) => {
+            if (!element.innerHTML.includes('Tooltip')) {
+                let newE = element.cloneNode(true);
+                newE.className += " tooltip";
+                newE.innerHTML = variable + ' ' + newE.innerHTML;
+                element.replaceWith(newE);
+            }
+        }
+
         const ngServiceDecorator = require("core/ngService");
 
         let customer = '';
@@ -279,14 +245,14 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "removeRefund") {
                                                 // button.disabled = true;
-                                                makeDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
+                                                makeButtonDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
                                             }
                                         }
                                         let inputs2 = document.getElementsByTagName("input");
                                         for (var input2 of inputs2) {
                                             if (input2.getAttribute("ng-model") === "refund.Amount") {
                                                 // input2.disabled = true;
-                                                // makeDisabled(input2);
+                                                makeInputDisabled(input2);
                                             }
                                         }
 
@@ -295,7 +261,7 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "btn_Action") {
                                                 // button.disabled = true;
-                                                makeDisabled(button, "This refund is not yet Actionable, please try after sometime");
+                                                makeButtonDisabled(button, "This refund is not yet Actionable, please try after sometime");
                                                 break;
                                             }
                                         }
@@ -310,14 +276,14 @@ define(function (require) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "removeRefund") {
                                     // button.disabled = true;
-                                    makeDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
+                                    makeButtonDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
                                 }
                             }
                             let inputs2 = document.getElementsByTagName("input");
                             for (var input2 of inputs2) {
                                 if (input2.getAttribute("ng-model") === "refund.Amount") {
                                     // input2.disabled = true;
-                                    // makeDisabled(input2);
+                                    makeInputDisabled(input2);
                                 }
                             }
 
@@ -326,7 +292,7 @@ define(function (require) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "btn_Action") {
                                     // button.disabled = true;
-                                    makeDisabled(button, "This refund is not yet Actionable, please try after sometime");
+                                    makeButtonDisabled(button, "This refund is not yet Actionable, please try after sometime");
                                     break;
                                 }
                             }
