@@ -109,7 +109,7 @@ define(function (require) {
                 newE.onclick = null;
 
                 newE.onclick = function () {
-                    var divWithButtons = body.getElementsByClassName("buttons")[0];
+                    var divWithButtons = document.getElementsByClassName("buttons")[0];
                     if (divWithButtons) {
                         for (var span of divWithButtons.getElementsByTagName("span")) {
                             if (span.classList.contains("invalidity")) {
