@@ -87,8 +87,16 @@ define(function (require) {
         var innerTooltip = ' ' +
             '<span class="tooltip-wrapper"><span class="tooltip">Tooltip</span></span>' +
             '';
+        const testF = () => {
+            return 20
+        }
+        const makeDisabled = (element, message) => {
 
-        const makeDisabled = (element) => {
+            // let test = {
+            //     ["val1"]: 100 - testF(),
+            //     ["val2"]: 1111,
+            //     ["val3"]: 100 - testF(),
+            // }
 
             if (!element.className.includes("click-removed")) {
 
@@ -107,13 +115,14 @@ define(function (require) {
                 newE.removeAttribute("onclick");
                 newE.removeAttribute("click");
                 newE.onclick = null;
+                let error = message;
 
                 newE.onclick = function () {
                     var tstst = document.getElementsByClassName("buttons");
                     var divWithButtons = document.getElementsByClassName("buttons")[0];
                     if (divWithButtons) {
                         for (var span of divWithButtons.getElementsByTagName("span")) {
-                            if (span.classList.contains("invalidity")) {
+                            if (span.innerHTML.contains(error)) {
                                 return;
                             }
                         }
@@ -122,18 +131,18 @@ define(function (require) {
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;';
                         var tagI = document.createElement("i");
-                        tagI.innerHTML = "TEST"
+                        tagI.innerHTML = error;
                         tagI.setAttribute("id", "custom-invalidity-text");
 
 
                         tagSpan.appendChild(tagI);
                         divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
 
-
+                        setTimeout(() => {
+                            tagSpan.remove();
+                        }, 5000);
                     }
-
-                    alert('1');
-
+                    // alert('1');
                 };
                 // newE.setAttribute("onclick", "alert('2');");
                 // newE.setAttribute("click", "alert('3');");
@@ -270,7 +279,7 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "removeRefund") {
                                                 // button.disabled = true;
-                                                makeDisabled(button);
+                                                makeDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
                                             }
                                         }
                                         let inputs2 = document.getElementsByTagName("input");
@@ -286,7 +295,7 @@ define(function (require) {
                                         for (var button of buttons) {
                                             if (button.getAttribute("lw-tst") === "btn_Action") {
                                                 // button.disabled = true;
-                                                makeDisabled(button);
+                                                makeDisabled(button, "This refund is not yet Actionable, please try after sometime");
                                                 break;
                                             }
                                         }
@@ -301,7 +310,7 @@ define(function (require) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "removeRefund") {
                                     // button.disabled = true;
-                                    makeDisabled(button);
+                                    makeDisabled(button, "Refund cannot be deleted on this order, please contact Tech Support");
                                 }
                             }
                             let inputs2 = document.getElementsByTagName("input");
@@ -317,7 +326,7 @@ define(function (require) {
                             for (var button of buttons) {
                                 if (button.getAttribute("lw-tst") === "btn_Action") {
                                     // button.disabled = true;
-                                    makeDisabled(button);
+                                    makeDisabled(button, "This refund is not yet Actionable, please try after sometime");
                                     break;
                                 }
                             }
