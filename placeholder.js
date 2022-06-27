@@ -128,7 +128,7 @@ define(function (require) {
         }
 
         const makeInputDisabled = (element) => {
-            if (!element.innerHTML.includes('Tooltip')) {
+            if (!element.className.includes('tooltip')) {
                 let newE = element.cloneNode(true);
                 newE.className += " tooltip";
                 newE.innerHTML = tooltipStyleOld + ' ' + newE.innerHTML;
