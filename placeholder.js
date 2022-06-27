@@ -90,10 +90,12 @@ define(function (require) {
 
         const makeDisabled = (element) => {
 
-            if (!element.innerHTML.includes("span")) {
+            if (!element.className.includes("click-removed")) {
 
                 // element.disabled = true;
                 let newE = element.cloneNode(true);
+
+                newE.className += " click-removed";
 
                 // let innerEl = document.createElement("span");
                 // innerEl.onclick = function () { alert('1'); };
