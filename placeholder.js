@@ -137,6 +137,29 @@ define(function (require) {
             // }
             if (!element.disabled) {
                 element.disabled = true;
+                let error = "TEST";
+
+                var divWithButtons = document.getElementsByClassName("buttons")[0];
+                if (divWithButtons) {
+                    for (var span of divWithButtons.getElementsByTagName("span")) {
+                        if (span.innerHTML.contains(error)) {
+                            return;
+                        }
+                    }
+
+                    var tagSpan = document.createElement("span");
+                    tagSpan.style.cssText = 'float:left;color:red;';
+                    var tagI = document.createElement("i");
+                    tagI.innerHTML = error;
+                    tagI.setAttribute("id", "custom-invalidity-text");
+
+                    tagSpan.appendChild(tagI);
+                    divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
+
+                    setTimeout(() => {
+                        tagSpan.remove();
+                    }, 5000);
+                }
             }
         }
 
