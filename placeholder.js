@@ -113,7 +113,7 @@ define(function (require) {
                             }
                         }
                         for (var span of divWithButtons.getElementsByTagName("span")) {
-                            if (span.style.cssText.contains('float:left;color:red;text-align:left;')) {
+                            if (span.innerHTML.contains('custom-invalidity-text')) {
                                 var tagI = document.createElement("i");
                                 tagI.innerHTML = error;
                                 tagI.setAttribute("id", "custom-invalidity-text");
@@ -166,7 +166,7 @@ define(function (require) {
                         }
                     }
                     for (var span of divWithButtons.getElementsByTagName("span")) {
-                        if (span.style.cssText.contains('float:left;color:red;text-align:left;')) {
+                        if (span.innerHTML.contains('custom-invalidity-text')) {
                             var tagI = document.createElement("i");
                             tagI.innerHTML = error;
                             tagI.setAttribute("id", "custom-invalidity-text");
