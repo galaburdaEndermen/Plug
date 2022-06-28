@@ -90,6 +90,10 @@ define(function (require) {
         const testF = () => {
             return 20
         }
+
+        const insertAfter = (newNode, referenceNode) => {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
         const makeButtonDisabled = (element, message) => {
             if (!element.className.includes("click-removed")) {
                 let newE = element.cloneNode(true);
@@ -109,6 +113,7 @@ define(function (require) {
                             }
                         }
 
+                        var br = document.createElement("br");
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;';
                         var tagI = document.createElement("i");
@@ -117,6 +122,7 @@ define(function (require) {
 
                         tagSpan.appendChild(tagI);
                         divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
+                        insertAfter(br, tagSpan);
 
                         setTimeout(() => {
                             tagSpan.remove();
@@ -155,6 +161,7 @@ define(function (require) {
 
                     tagSpan.appendChild(tagI);
                     divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
+                    insertAfter(br, tagSpan);
 
                     setTimeout(() => {
                         tagSpan.remove();
