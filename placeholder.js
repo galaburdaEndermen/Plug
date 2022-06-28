@@ -128,11 +128,15 @@ define(function (require) {
         }
 
         const makeInputDisabled = (element) => {
-            if (!element.className.includes('tooltip')) {
-                let newE = element.cloneNode(true);
-                newE.className += " tooltip";
-                newE.innerHTML = tooltipStyleOld + ' ' + element.innerHTML;
-                element.replaceWith(newE);
+            // if (!element.className.includes('tooltip')) {
+            //     let newE = element.cloneNode(true);
+            //     // newE.className += " tooltip";
+            //     newE.disabled = true;
+            //     // newE.innerHTML = tooltipStyleOld + ' ' + element.innerHTML;
+            //     element.replaceWith(newE);
+            // }
+            if (!element.disabled) {
+                element.disabled = true;
             }
         }
 
