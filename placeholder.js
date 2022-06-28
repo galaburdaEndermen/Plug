@@ -117,12 +117,12 @@ define(function (require) {
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;';
                         var tagI = document.createElement("i");
-                        tagI.innerHTML = error;
+                        tagI.innerHTML = error + '<br> TEST';
                         tagI.setAttribute("id", "custom-invalidity-text");
 
                         tagSpan.appendChild(tagI);
                         divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
-                        insertAfter(br, tagSpan);
+                        // insertAfter(br, tagSpan);
 
                         setTimeout(() => {
                             tagSpan.remove();
@@ -156,12 +156,13 @@ define(function (require) {
                     var tagSpan = document.createElement("span");
                     tagSpan.style.cssText = 'float:left;color:red;';
                     var tagI = document.createElement("i");
-                    tagI.innerHTML = error;
+                    // tagI.innerHTML = error;
+                    tagI.innerHTML = error + '<br> TEST';
                     tagI.setAttribute("id", "custom-invalidity-text");
 
                     tagSpan.appendChild(tagI);
                     divWithButtons.insertBefore(tagSpan, divWithButtons.firstChild);
-                    insertAfter(br, tagSpan);
+                    // insertAfter(br, tagSpan);
 
                     setTimeout(() => {
                         tagSpan.remove();
