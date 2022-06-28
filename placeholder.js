@@ -112,12 +112,25 @@ define(function (require) {
                                 return;
                             }
                         }
+                        for (var span of divWithButtons.getElementsByTagName("span")) {
+                            if (span.style.cssText.contains('float:left;color:red;text-align:left;')) {
+                                var tagI = document.createElement("i");
+                                tagI.innerHTML = error;
+                                tagI.setAttribute("id", "custom-invalidity-text");
+                                span.appendChild(tagI);
 
-                        var br = document.createElement("br");
+                                setTimeout(() => {
+                                    span.remove();
+                                }, 5000);
+                                return;
+                            }
+                        }
+
+
                         var tagSpan = document.createElement("span");
                         tagSpan.style.cssText = 'float:left;color:red;text-align:left;';
                         var tagI = document.createElement("i");
-                        tagI.innerHTML = error + '<br> TEST';
+                        tagI.innerHTML = error;
                         tagI.setAttribute("id", "custom-invalidity-text");
 
                         tagSpan.appendChild(tagI);
@@ -143,7 +156,7 @@ define(function (require) {
             // }
             if (!element.disabled) {
                 element.disabled = true;
-                let error = "TEST";
+                let error = "TEST2";
 
                 var divWithButtons = document.getElementsByClassName("buttons")[0];
                 if (divWithButtons) {
@@ -152,12 +165,24 @@ define(function (require) {
                             return;
                         }
                     }
+                    for (var span of divWithButtons.getElementsByTagName("span")) {
+                        if (span.style.cssText.contains('float:left;color:red;text-align:left;')) {
+                            var tagI = document.createElement("i");
+                            tagI.innerHTML = error;
+                            tagI.setAttribute("id", "custom-invalidity-text");
+                            span.appendChild(tagI);
+
+                            setTimeout(() => {
+                                span.remove();
+                            }, 5000);
+                            return;
+                        }
+                    }
 
                     var tagSpan = document.createElement("span");
                     tagSpan.style.cssText = 'float:left;color:red;text-align:left;';
                     var tagI = document.createElement("i");
-                    // tagI.innerHTML = error;
-                    tagI.innerHTML = error + '<br> TEST';
+                    tagI.innerHTML = error;
                     tagI.setAttribute("id", "custom-invalidity-text");
 
                     tagSpan.appendChild(tagI);
