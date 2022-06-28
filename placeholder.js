@@ -117,6 +117,8 @@ define(function (require) {
                                 var tagI = document.createElement("i");
                                 tagI.innerHTML = error;
                                 tagI.setAttribute("id", "custom-invalidity-text");
+                                let br = document.createElement("br");
+                                span.appendChild(br);
                                 span.appendChild(tagI);
 
                                 setTimeout(() => {
@@ -156,7 +158,7 @@ define(function (require) {
             // }
             if (!element.disabled) {
                 element.disabled = true;
-                let error = "TEST2";
+                let error = "Refund amount cannot be modified on this order, please contact Tech Support";
 
                 var divWithButtons = document.getElementsByClassName("buttons")[0];
                 if (divWithButtons) {
@@ -170,6 +172,8 @@ define(function (require) {
                             var tagI = document.createElement("i");
                             tagI.innerHTML = error;
                             tagI.setAttribute("id", "custom-invalidity-text");
+                            let br = document.createElement("br");
+                            span.appendChild(br);
                             span.appendChild(tagI);
 
                             setTimeout(() => {
