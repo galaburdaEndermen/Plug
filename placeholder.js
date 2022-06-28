@@ -115,7 +115,7 @@ define(function (require) {
 
                         var br = document.createElement("br");
                         var tagSpan = document.createElement("span");
-                        tagSpan.style.cssText = 'float:left;color:red;';
+                        tagSpan.style.cssText = 'float:left;color:red;text-align:left;';
                         var tagI = document.createElement("i");
                         tagI.innerHTML = error + '<br> TEST';
                         tagI.setAttribute("id", "custom-invalidity-text");
@@ -154,7 +154,7 @@ define(function (require) {
                     }
 
                     var tagSpan = document.createElement("span");
-                    tagSpan.style.cssText = 'float:left;color:red;';
+                    tagSpan.style.cssText = 'float:left;color:red;text-align:left;';
                     var tagI = document.createElement("i");
                     // tagI.innerHTML = error;
                     tagI.innerHTML = error + '<br> TEST';
