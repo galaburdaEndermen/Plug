@@ -7,24 +7,23 @@ define(function (require) {
 
             var callback = function (mutationsList, observer) {
                 try {
-                    console.log("BACKORDER SCREEN CALLBACK TEST");
-                    if (!userPermissions?.canSeeTheApp) {
-                        var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
-                        if (appsContainer) {
-                            var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
-                            if (moduleContainers.length > 0) {
-                                for (var moduleContainer of moduleContainers) {
-                                    var nameModule = moduleContainer.getElementsByClassName("module-name-text")[0];
-                                    if (nameModule) {
-                                        if (nameModule.getAttribute("title") === "Custom Permissions Setup") {
-                                            moduleContainer.innerHTML = "";
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    // if (!userPermissions?.canSeeTheApp) {
+                    //     var appsContainer = document.getElementsByClassName("cdk-overlay-container")[0];
+                    //     if (appsContainer) {
+                    //         var moduleContainers = appsContainer.getElementsByClassName("moduleContainer");
+                    //         if (moduleContainers.length > 0) {
+                    //             for (var moduleContainer of moduleContainers) {
+                    //                 var nameModule = moduleContainer.getElementsByClassName("module-name-text")[0];
+                    //                 if (nameModule) {
+                    //                     if (nameModule.getAttribute("title") === "Custom Permissions Setup") {
+                    //                         moduleContainer.innerHTML = "";
+                    //                         break;
+                    //                     }
+                    //                 }
+                    //             }
+                    //         }
+                    //     }
+                    // }
                 } catch (error) {
                     console.log("BACKORDER SCREEN ERROR");
                     console.log(error);
