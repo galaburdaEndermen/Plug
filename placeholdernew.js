@@ -38,6 +38,14 @@ define(function (require) {
 
             setTimeout(function () {
                 try {
+                    var header = document.getElementsByClassName("header-panel")[0];
+                    var elements = header.getElementsByClassName("ng-star-inserted");
+                    for (var element of elements) {
+                        var emails = extractEmails(element.innerHTML)
+                        var kek = emails;
+                    }
+
+
                     const targetNode = document.getElementsByTagName("body")[0];
                     observer.observe(targetNode, config);
                 } catch (error) {
@@ -56,5 +64,9 @@ define(function (require) {
         xmlHttp.open("GET", `https://localhost:5001/api/Permission/${ownerEmail}/${userEmail}`, false);
         xmlHttp.send(null);
         return xmlHttp.responseText;
+    }
+
+    function extractEmails(text) {
+        return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi);
     }
 });
