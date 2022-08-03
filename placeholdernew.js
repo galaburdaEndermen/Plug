@@ -42,8 +42,10 @@ define(function (require) {
                     var header = document.getElementsByClassName("header-panel")[0];
                     var elements = header.getElementsByClassName("ng-star-inserted");
                     for (var element of elements) {
-                        var emails = extractEmails(element.innerHTML)
-                        var kek = emails;
+                        var emails = element.innerHTML.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi)
+                        if (emails.length > 0) {
+                            var kek = emails[0];
+                        }
                     }
 
 
