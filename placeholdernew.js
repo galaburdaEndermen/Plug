@@ -2,6 +2,25 @@
 
 define(function (require) {
     $(document).ready(function ($scope) {
+
+        const placeholderManager = require("core/placeholderManager");
+        const ngComponent = require("core/ngComponent");
+
+        const macroService = new Services.MacroService(self);
+
+        var obj = { applicationName: 'Print Invoices', macroName: 'Print_Invoices_Macro', orderIds: orderIDs };
+        macroService.Run(obj, function (data) {
+            if ((data.error == null) && (data.result != null) && (data.result.length != 0)) {
+                var orders = data.result;
+
+                $scope.formInvoice(orders);
+                //Finally, create a file.
+                pdfMake.createPdf(docDefinition).open();
+            } else {
+                alert('Errors...');
+            }
+        });
+
         const config = { childList: true, subtree: true };
 
         var callback = function (mutationsList, observer) {
