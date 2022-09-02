@@ -8,7 +8,7 @@ define(function (require) {
 
         const macroService = new Services.MacroService(self);
 
-        var obj = { applicationName: 'LoggingMacro_Dev', macroName: 'LoggingMacro_Dev', testPar: "testParTest" };
+        var obj = { applicationName: 'LoggingMacro_Dev', macroName: 'Logging_Macro_Dev', testPar: "testParTest" };
         macroService.Run(obj, function (data) {
             if ((data.error == null) && (data.result != null) && (data.result.length != 0)) {
                 var orders = data.result;
