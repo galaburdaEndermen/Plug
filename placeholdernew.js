@@ -8,7 +8,7 @@ define(function (require) {
 
         const macroService = new Services.MacroService(self);
 
-        var obj = { applicationName: 'Print Invoices', macroName: 'Print_Invoices_Macro', orderIds: ["b2a6554a-db14-43cf-a2f0-8ea5030c0f01", "fbce3128-5961-440a-bf2f-9bba54354fc4", "5f514423-be6a-48aa-8eba-d0b5e9ecfa71"] };
+        var obj = { applicationName: 'LoggingMacro_Dev', macroName: 'LoggingMacro_Dev', testPar: "testParTest" };
         macroService.Run(obj, function (data) {
             if ((data.error == null) && (data.result != null) && (data.result.length != 0)) {
                 var orders = data.result;
