@@ -8,19 +8,32 @@ define(function (require) {
 
         const macroService = new Services.MacroService(self);
 
-        // var obj = { applicationName: 'LoggingMacro_Dev', macroName: 'LoggingMacro_Dev', testPar: "testParTest" };
-        // // var obj = { applicationName: '301_CreditNotes', macroName: '301_CreditNotes', orderID: "2b68f651-e5a4-4e48-8df3-a474c242061a", refundHeaderID: 102515 };
-        // macroService.Run(obj, function (data) {
-        //     if ((data.error == null) && (data.result != null) && (data.result.length != 0)) {
-        //         var orders = data.result;
 
-        //         $scope.formInvoice(orders);
-        //         //Finally, create a file.
-        //         pdfMake.createPdf(docDefinition).open();
-        //     } else {
-        //         alert('Errors...');
-        //     }
-        // });
+        const session = JSON.parse(window.localStorage.getItem("SPA_auth_session"));
+        const token = window.localStorage.getItem("access_token");
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", `${session.server}/api/extensions/getInstalledExtensions`, false);
+        xmlHttp.setRequestHeader('Authorization', `Bearer ${token}`);
+        xmlHttp.send(null);
+        let res1 = xmlHttp.responseText;
+
+        var xmlHttp2 = new XMLHttpRequest();
+        xmlHttp2.open("GET", `${session.server}/api/extensions/getTemporaryToken?applicationId=e671c34f-4d16-498f-8813-fefd3d76a825`, false);
+        xmlHttp2.setRequestHeader('Authorization', `Bearer ${token}`);
+        xmlHttp2.send(null);
+        let res2 = xmlHttp2.responseText;
+
+
+
+        // var popUpWindow;
+        // function popup(n) {
+        //     popUpWindow = window.open(n);
+        // }
+        // function foo(obj) {
+        //     test1 = "http://localhost:8080/test/document.html?" + obj.innerHTML;
+        //     popUpWindow.document.write('<iframe height="450" allowTransparency="true" frameborder="0" scrolling="yes" style="width:100%;" src="' + test1 + '" type= "text/javascript"></iframe>');
+
+        // }
 
         const config = { childList: true, subtree: true };
 
