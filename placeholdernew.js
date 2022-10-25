@@ -15,7 +15,7 @@ define(function (require) {
         xmlHttp.open("GET", `${session.server}/api/extensions/getInstalledExtensions`, false);
         xmlHttp.setRequestHeader('Authorization', `Bearer ${token}`);
         xmlHttp.send(null);
-        let res1 = xmlHttp.responseText;
+        let res1 = JSON.parse(xmlHttp.responseText);
 
         var xmlHttp2 = new XMLHttpRequest();
         xmlHttp2.open("GET", `${session.server}/api/extensions/getTemporaryToken?applicationId=e671c34f-4d16-498f-8813-fefd3d76a825`, false);
